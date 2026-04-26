@@ -1,15 +1,16 @@
 {
-  "workbench.colorCustomizations": {
-    "activityBar.background": "#242D41",
-    "titleBar.activeBackground": "#333F5A",
-    "titleBar.activeForeground": "#F9FAFC",
-    "titleBar.inactiveBackground": "#242D41",
-    "titleBar.inactiveForeground": "#F9FAFC",
-    "statusBar.background": "#242D41",
-    "statusBar.foreground": "#F9FAFC",
-    "statusBar.debuggingBackground": "#242D41",
-    "statusBar.debuggingForeground": "#F9FAFC",
-    "statusBar.noFolderBackground": "#242D41",
-    "statusBar.noFolderForeground": "#F9FAFC"
-  }
+	"git.addAICoAuthor": "off",
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#242D41",
+		"titleBar.activeBackground": "#333F5A",
+		"titleBar.activeForeground": "#F9FAFC",
+		"titleBar.inactiveBackground": "#242D41",
+		"titleBar.inactiveForeground": "#F9FAFC",
+		"statusBar.background": "#242D41",
+		"statusBar.foreground": "#F9FAFC",
+		"statusBar.debuggingBackground": "#242D41",
+		"statusBar.debuggingForeground": "#F9FAFC",
+		"statusBar.noFolderBackground": "#242D41",
+		"statusBar.noFolderForeground": "#F9FAFC"
+	}
 }
