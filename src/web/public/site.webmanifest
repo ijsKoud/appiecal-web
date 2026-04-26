@@ -1,0 +1,14 @@
+{
+	"name": "klrnbk.nl",
+	"short_name": "klrnbk.nl",
+	"icons": [
+		{
+			"src": "/android-chrome-144x144.png?v=2",
+			"sizes": "144x144",
+			"type": "image/png"
+		}
+	],
+	"theme_color": "#171717",
+	"background_color": "#171717",
+	"display": "standalone"
+}
