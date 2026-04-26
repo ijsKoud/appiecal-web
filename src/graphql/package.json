@@ -2,6 +2,7 @@
 	"name": "appiecal-graphql",
 	"version": "0.1.0",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"generate-openai-types:all": "pnpm generate-openai-types:idp && pnpm generate-openai-types:schedule && pnpm generate-openai-types:calendar && pnpm generate-openai-types:sync",
 		"generate-openai-types:idp": "openapi-typescript -o src/types/idp.d.ts https://appiecal-idp.k3s.home.klrnbk.nl/v3/api-docs",
@@ -9,14 +10,17 @@
 		"generate-openai-types:calendar": "openapi-typescript -o src/types/calendar.d.ts https://appiecal-calendar.k3s.home.klrnbk.nl/v3/api-docs",
 		"generate-openai-types:sync": "openapi-typescript -o src/types/sync.d.ts https://appiecal-sync.k3s.home.klrnbk.nl/v3/api-docs"
 	},
-	"dependencies": {},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3.3.5",
-		"eslint": "^10.2.1",
-		"typescript": "^6.0.3",
-		"openapi-typescript": "^6.0.0",
+		"@sapphire/eslint-config": "5.0.3",
 		"@sapphire/ts-config": "5.0.3",
-		"@sapphire/eslint-config": "5.0.3"
+		"eslint": "^10.2.1",
+		"openapi-typescript": "^6.0.0",
+		"typescript": "^6.0.3",
+		"@types/node": "^25.6.0"
 	},
-	"packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8"
+	"packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8",
+	"dependencies": {
+		"openapi-fetch": "^0.17.0"
+	}
 }
