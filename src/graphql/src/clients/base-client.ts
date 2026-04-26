@@ -1,14 +1,15 @@
-import type { Client } from "openapi-fetch";
+import type { Client, ClientOptions } from "openapi-fetch";
 import createClient from "openapi-fetch";
 import { getAuthHeaders } from "../utils/get-auth-headers.js";
 import type { components } from "../types/sync.js";
+import { ApiClientOptions } from "../constants.js";
 
 export class BaseClient<P extends {}> {
 	protected client: Client<P, `${string}/${string}`>;
 	private userAuthToken: string | null = null;
 
-	public constructor(baseUrl: string) {
-		this.client = createClient({ baseUrl });
+	public constructor(clientOptions: ClientOptions = ApiClientOptions) {
+		this.client = createClient(clientOptions);
 	}
 
 	public setUserAuthToken(token: string | null) {
