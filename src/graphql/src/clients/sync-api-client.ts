@@ -1,6 +1,8 @@
+import { singleton } from "tsyringe";
 import type { paths } from "../types/sync.js";
 import { BaseClient } from "./base-client.js";
 
+@singleton()
 export class SyncApiClient extends BaseClient<paths> {
 	public async getSyncStatus(): Promise<paths["/v1/sync/automatic/status"]["get"]["responses"]["200"]["content"]["*/*"]> {
 		const response = await this.client.GET("/v1/sync/automatic/status", { headers: { ...this.userAuthHeaders } });
