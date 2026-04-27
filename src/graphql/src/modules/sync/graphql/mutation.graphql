@@ -1,4 +1,4 @@
 extend type Mutation {
-	setAutomaticSync(state: Boolean): Boolean
-	triggerSync: SyncResults!
+	setAutomaticSync(state: Boolean!): Boolean
+	triggerSync(startDate: String!, endDate: String!): SyncResults!
 }

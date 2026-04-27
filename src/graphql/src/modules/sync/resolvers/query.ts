@@ -1,7 +1,7 @@
 import type { SyncModule } from "../generated-types/module-types.js";
 import { SyncProvider } from "../provider.js";
 
-const SyncResolver: SyncModule.Resolvers = {
+const QuerySyncResolver: SyncModule.Resolvers = {
 	Query: {
 		getAutomaticSyncStatus: (_, {}, { injector }: GraphQLModules.Context) => {
 			const resolver = injector.get(SyncProvider);
@@ -10,4 +10,4 @@ const SyncResolver: SyncModule.Resolvers = {
 	}
 };
 
-export default SyncResolver;
+export default QuerySyncResolver;
