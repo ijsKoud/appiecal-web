@@ -1,9 +1,15 @@
-import { singleton } from "tsyringe";
+import { Inject, Injectable, Scope } from "graphql-modules";
 import type { paths } from "../types/sync.js";
 import { BaseClient } from "./base-client.js";
+import { ClientOptions } from "openapi-fetch";
+import { SYNC_API_FETCH_CLIENT_OPTIONS } from "#providers/api-fetch-client-options/token.js";
+import { USER_AUTH_TOKEN } from "#providers/user-auth-token/token.js";
 
-@singleton()
+@Injectable({ scope: Scope.Operation })
 export class SyncApiClient extends BaseClient<paths> {
+	public constructor(@Inject(SYNC_API_FETCH_CLIENT_OPTIONS) clientOptions: ClientOptions, @Inject(USER_AUTH_TOKEN) userAuthToken: string | null) {
+		super(clientOptions, userAuthToken);
+	}
 	public async getSyncStatus(): Promise<paths["/v1/sync/automatic/status"]["get"]["responses"]["200"]["content"]["*/*"]> {
 		const response = await this.client.GET("/v1/sync/automatic/status", { headers: { ...this.userAuthHeaders } });
 		if (response.error) this.errorHandling(response.error);
