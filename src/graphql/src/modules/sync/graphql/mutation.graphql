@@ -1,0 +1,4 @@
+extend type Mutation {
+	setAutomaticSync(state: Boolean): Boolean
+	triggerSync: SyncResults!
+}

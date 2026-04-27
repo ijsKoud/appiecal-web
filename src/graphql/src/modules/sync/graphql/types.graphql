@@ -1,0 +1,9 @@
+type AutomaticSyncStatus {
+	active: Boolean!
+}
+
+type SyncResults {
+	newShifts: [String!]!
+	updatedShifts: [String!]!
+	deletedShifts: [String!]!
+}
