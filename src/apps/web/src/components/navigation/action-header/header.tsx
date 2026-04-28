@@ -15,6 +15,7 @@ import {
 	MenubarSubTrigger,
 	MenubarTrigger
 } from "@/components/ui/menubar";
+import { SyncTab } from "./sync-tab";
 
 export const ActionHeader = () => {
 	return (
@@ -48,21 +49,7 @@ export const ActionHeader = () => {
 				</MenubarContent>
 			</MenubarMenu>
 
-			<MenubarMenu>
-				<MenubarTrigger>Sync</MenubarTrigger>
-				<MenubarContent>
-					<MenubarGroup>
-						<MenubarRadioGroup value="manual">
-							<MenubarRadioItem value="auto">Automatic</MenubarRadioItem>
-							<MenubarRadioItem value="manual">Manual</MenubarRadioItem>
-						</MenubarRadioGroup>
-					</MenubarGroup>
-					<MenubarSeparator />
-					<MenubarGroup>
-						<MenubarItem disabled>Sync now</MenubarItem>
-					</MenubarGroup>
-				</MenubarContent>
-			</MenubarMenu>
+			<SyncTab />
 		</Menubar>
 	);
 };
