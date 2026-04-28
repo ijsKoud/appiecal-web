@@ -1,5 +1,5 @@
 import { MainContent } from "@/components/main-content";
-import { ActionHeader } from "@/components/navigation/action-header";
+import { ActionHeader } from "@/components/navigation/action-header/header";
 import { SignOutButton } from "@/components/navigation/sign-out-button";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
