@@ -1,0 +1,9 @@
+type Query {
+	getAutomaticSyncStatus: AutomaticSyncStatus!
+}
+
+query getAutomaticSyncStatus {
+	getAutomaticSyncStatus {
+		active
+	}
+}
