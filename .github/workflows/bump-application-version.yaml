@@ -1,0 +1,48 @@
+name: Bump Application Versions
+
+on:
+  workflow_call:
+    inputs:
+      apps_dir:
+        description: "Directory containing the apps"
+        type: string
+        default: "src/apps"
+        required: false
+      apps:
+        description: "Comma-separated list of app names to update"
+        type: string
+        required: true
+      bump_type:
+        description: "Type of version bump (major, minor, patch)"
+        type: string
+        required: true
+  workflow_dispatch:
+    inputs:
+      apps_dir:
+        description: "Directory containing the apps"
+        type: string
+        default: "src/apps"
+        required: false
+      apps:
+        description: "Comma-separated list of app names to update"
+        type: string
+        required: true
+      bump_type:
+        description: "Type of version bump (major, minor, patch)"
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+        required: true
+
+jobs:
+  bump-versions:
+    uses: ijsKoud/actions/.github/workflows/generic-typescript-monorepo-bump-versions.yaml@main
+    with:
+      apps_dir: ${{ inputs.apps_dir }}
+      apps: ${{ inputs.apps }}
+      bump_type: ${{ inputs.bump_type }}
+    secrets:
+      APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
+      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
