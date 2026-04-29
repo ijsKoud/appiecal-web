@@ -15,7 +15,7 @@ ARG APP
 # Copy obly the needed files
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm add turbo --global
 COPY . .
-RUN turbo prune --scope=$APP --docker
+RUN cd src && turbo prune --scope=$APP --docker
 
 
 # --- Installer ---
@@ -30,7 +30,7 @@ ARG APP
 # Install dependencies
 COPY .gitignore .gitignore
 COPY --from=builder /app/out/json/ .
-COPY pnpm-lock.yaml ./pnpm-lock.yaml
+COPY src/pnpm-lock.yaml ./pnpm-lock.yaml
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
