@@ -1,0 +1,59 @@
+name: Build, Release and Deploy Apps
+
+on:
+  repository_dispatch:
+    types: [version-bumped]
+  workflow_dispatch:
+    inputs:
+      apps_dir:
+        description: "Directory containing the apps"
+        type: string
+        default: "src/apps"
+        required: false
+      apps:
+        description: "Comma-separated list of app names to build and deploy"
+        type: string
+        required: true
+
+jobs:
+  parse-input:
+    runs-on: ubuntu-latest
+    outputs:
+      apps_dir: ${{ steps.set-vars.outputs.apps_dir }}
+      apps: ${{ steps.set-vars.outputs.apps }}
+    steps:
+      - name: Set Variables
+        id: set-vars
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            APPS="${{ github.event.inputs.apps }}"
+            echo "apps=$APPS" >> $GITHUB_OUTPUT
+            echo "apps_dir=${{ github.event.inputs.apps_dir }}" >> $GITHUB_OUTPUT
+          else
+            APPS="${{ github.event.client_payload.apps }}"
+            echo "apps=$APPS" >> $GITHUB_OUTPUT
+            echo "apps_dir=${{ github.event.client_payload.apps_dir }}" >> $GITHUB_OUTPUT
+          fi
+
+          echo "$(cat $GITHUB_OUTPUT)"
+
+  build:
+    needs: parse-input
+    uses: ijsKoud/actions/.github/workflows/generic-typescript-monorepo-build-release.yaml@main
+    with:
+      apps_dir: ${{ needs.parse-input.outputs.apps_dir }}
+      apps: ${{ needs.parse-input.outputs.apps }}
+    secrets:
+      APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
+      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
+  deploy:
+    needs: [parse-input, build]
+    uses: ijsKoud/actions/.github/workflows/generic-application-deploy.yaml@main
+    with:
+      apps: ${{ needs.parse-input.outputs.apps }}
+    secrets:
+      GITOPS_TOKEN: ${{ secrets.GITOPS_TOKEN }}
+      ARGOCD_TOKEN: ${{ secrets.ARGOCD_TOKEN }}
+      ARGOCD_SERVER_URL: ${{ secrets.ARGOCD_SERVER_URL }}
+      TAILSCALE_CLIENT_ID: ${{ secrets.TAILSCALE_CLIENT_ID }}
+      TAILSCALE_CLIENT_SECRET: ${{ secrets.TAILSCALE_CLIENT_SECRET }}
