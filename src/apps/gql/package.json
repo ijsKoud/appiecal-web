@@ -8,6 +8,7 @@
 	},
 	"scripts": {
 		"dev": "pnpm run generate-graphql-types && tsc && copyfiles -u 1 \"src/**/*.graphql\" dist && node dist/index.js",
+		"build": "tsc",
 		"generate-graphql-types": "graphql-codegen --config ./src/graphql-codegen.ts",
 		"generate-openai-types:all": "pnpm generate-openai-types:idp && pnpm generate-openai-types:schedule && pnpm generate-openai-types:calendar && pnpm generate-openai-types:sync",
 		"generate-openai-types:idp": "openapi-typescript -o src/types/idp.d.ts https://appiecal-idp.k3s.home.klrnbk.nl/v3/api-docs",

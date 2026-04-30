@@ -26,6 +26,7 @@ RUN apk add --no-cache libc6-compat
 RUN apk update
 
 ARG APP
+ENV CI=true
 
 # Install dependencies
 COPY .gitignore .gitignore
