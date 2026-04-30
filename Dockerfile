@@ -65,4 +65,4 @@ COPY --from=installer --chown=app:app /app/apps/$APP/package.json ./apps/$APP/pa
 COPY --from=installer --chown=app:app /app/package.json package.json
 COPY --from=installer --chown=app:app /app/node_modules node_modules
 
-CMD cd $APP && pnpm start
+CMD cd ./apps/$APP && pnpm start
