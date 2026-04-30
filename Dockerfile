@@ -49,8 +49,6 @@ ENV NODE_ENV="production"
 RUN apk add --no-cache libc6-compat
 RUN apk update
 
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm add --global turbo
-
 # Set the user
 RUN addgroup --system --gid 1001 app
 RUN adduser --system --uid 1001 app
@@ -67,4 +65,4 @@ COPY --from=installer --chown=app:app /app/apps/$APP/package.json ./apps/$APP/pa
 COPY --from=installer --chown=app:app /app/package.json package.json
 COPY --from=installer --chown=app:app /app/node_modules node_modules
 
-CMD turbo start
+CMD cd $APP && pnpm start
