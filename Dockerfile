@@ -29,10 +29,10 @@ ARG APP
 
 # Install dependencies
 COPY .gitignore .gitignore
-COPY --from=builder /app/src/out/ .
-RUN ls
-
+COPY --from=builder /app/src/out/json .
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+
+COPY --from=builder /app/src/out/full .
 RUN pnpm turbo build --filter=$APP
 
 # Remove dev-dependencies from node_modules
