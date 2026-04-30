@@ -30,6 +30,7 @@ ARG APP
 # Install dependencies
 COPY .gitignore .gitignore
 COPY --from=builder /app/src/out/ .
+RUN ls
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 RUN pnpm turbo build --filter=$APP
