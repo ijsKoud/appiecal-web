@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "next dev --turbopack",
 		"build": "next build && cp -r public dist/standalone/apps/web/ && cp -r dist/static dist/standalone/apps/web/dist/",
-		"start": "node dist/standalone/server.js",
+		"start": "node dist/standalone/apps/web/server.js",
 		"lint": "next lint",
 		"generate-graphql-types": "graphql-codegen --config ./src/graphql-codegen.ts"
 	},
