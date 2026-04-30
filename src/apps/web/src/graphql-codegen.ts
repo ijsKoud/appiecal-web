@@ -7,7 +7,7 @@ const config: CodegenConfig = {
 	documents: "./src/components/gql/graphql/*.graphql",
 	generates: {
 		"./src/components/gql/_generated.ts": {
-			plugins: ["typescript", "typescript-operations", "typescript-react-apollo"],
+			plugins: ["typescript", "typescript-operations", "typed-document-node"],
 			config: {
 				apolloReactCommonImportFrom: "@apollo/client/react",
 				apolloReactHooksImportFrom: "@apollo/client/react"
