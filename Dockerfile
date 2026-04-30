@@ -65,4 +65,5 @@ COPY --from=installer --chown=app:app /app/apps/$APP/package.json ./apps/$APP/pa
 COPY --from=installer --chown=app:app /app/package.json package.json
 COPY --from=installer --chown=app:app /app/node_modules node_modules
 
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm add --global turbo
 CMD turbo start
