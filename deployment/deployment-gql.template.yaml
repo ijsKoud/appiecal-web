@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: appiecal-gql
+  name: appiecal-web-gql
   namespace: default
   annotations:
     secrets.phase.dev/redeploy: "true"
@@ -9,14 +9,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: appiecal-gql
+      app: appiecal-web-gql
   template:
     metadata:
       labels:
-        app: appiecal-gql
+        app: appiecal-web-gql
     spec:
       containers:
-        - name: appiecal-gql
+        - name: appiecal-web-gql
           image: DOCKER_IMAGE_SOURCE
           ports:
             - containerPort: 4000
@@ -24,5 +24,5 @@ spec:
             - name: BASE_API_URL
               valueFrom:
                 secretKeyRef:
-                  name: appiecal-gql-secrets
+                  name: appiecal-web-gql-secrets
                   key: BASE_API_URL
