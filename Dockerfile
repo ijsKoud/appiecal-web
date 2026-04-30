@@ -15,7 +15,7 @@ ARG APP
 # Copy obly the needed files
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm add turbo --global
 COPY . .
-RUN cd src && turbo prune --scope=$APP --docker
+RUN cd src && turbo prune $APP --docker
 
 
 # --- Installer ---
@@ -29,14 +29,9 @@ ARG APP
 
 # Install dependencies
 COPY .gitignore .gitignore
-COPY --from=builder /app/out/json/ .
-COPY src/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY --from=builder /app/src/out/ .
 
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-
-# Build the project
-COPY --from=builder /app/out/full/ .
-COPY --from=builder /app/tsconfig.json tsconfig.json
 RUN pnpm turbo build --filter=$APP
 
 # Remove dev-dependencies from node_modules
@@ -46,10 +41,11 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod
 
 # --- Runner ---
 FROM base AS runner
-
 WORKDIR /app
 
 ENV NODE_ENV="production"
+RUN apk add --no-cache libc6-compat
+RUN apk update
 
 # Set the user
 RUN addgroup --system --gid 1001 app
