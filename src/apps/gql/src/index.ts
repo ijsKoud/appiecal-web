@@ -14,6 +14,7 @@ import {
 	CalendarApiFetchClientOptionsProvider,
 	IdpApiFetchClientOptionsProvider
 } from "#providers/api-fetch-client-options/provider.js";
+import { idpModule } from "#modules/idp/module.js";
 
 interface Context {
 	token?: String;
@@ -27,7 +28,7 @@ const application = createApplication({
 		CalendarApiFetchClientOptionsProvider,
 		IdpApiFetchClientOptionsProvider
 	],
-	modules: [baseModule, syncModule]
+	modules: [baseModule, syncModule, idpModule]
 });
 
 // Workaround until official Apollo 4 support: https://github.com/graphql-hive/graphql-modules/issues/2270#issuecomment-1365000062
