@@ -1,0 +1,4 @@
+extend type Query {
+	getEntraLinkStatus: EntraLinkStatus!
+	getAuthorizationUrl: String!
+}
