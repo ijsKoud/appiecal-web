@@ -1,43 +1,43 @@
 {
-  "name": "gql",
-  "version": "0.2.0",
-  "private": true,
-  "type": "module",
-  "imports": {
-    "#*": "./dist/*"
-  },
-  "scripts": {
-    "dev-run": "pnpm run generate-graphql-types && pnpm run build && pnpm run start",
-    "dev": "nodemon --watch ./src --ext ts,graphql,d.ts --exec \"pnpm run dev-run\"",
-    "build": "tsc && copyfiles -u 1 \"src/**/*.graphql\" dist",
-    "start": "node dist/index.js",
-    "generate-graphql-types": "graphql-codegen --config ./src/graphql-codegen.ts",
-    "generate-openai-types:all": "pnpm generate-openai-types:idp && pnpm generate-openai-types:schedule && pnpm generate-openai-types:calendar && pnpm generate-openai-types:sync",
-    "generate-openai-types:idp": "openapi-typescript -o src/types/idp.d.ts https://appiecal-idp.k3s.home.klrnbk.nl/v3/api-docs",
-    "generate-openai-types:schedule": "openapi-typescript -o src/types/schedule.d.ts https://appiecal-schedule.k3s.home.klrnbk.nl/v3/api-docs",
-    "generate-openai-types:calendar": "openapi-typescript -o src/types/calendar.d.ts https://appiecal-calendar.k3s.home.klrnbk.nl/v3/api-docs",
-    "generate-openai-types:sync": "openapi-typescript -o src/types/sync.d.ts https://appiecal-sync.k3s.home.klrnbk.nl/v3/api-docs"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3.3.5",
-    "@graphql-codegen/graphql-modules-preset": "^5.1.5",
-    "@graphql-codegen/typescript-resolvers": "^5.1.8",
-    "@sapphire/eslint-config": "5.0.6",
-    "@sapphire/ts-config": "5.0.3",
-    "@types/node": "^25.6.0",
-    "copyfiles": "^2.4.1",
-    "eslint": "^10.2.1",
-    "nodemon": "^3.1.14",
-    "openapi-typescript": "^6.7.6",
-    "typescript": "^6.0.3"
-  },
-  "packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8",
-  "dependencies": {
-    "@apollo/server": "^5.5.0",
-    "@graphql-tools/load-files": "^7.0.1",
-    "graphql-modules": "^3.1.1",
-    "openapi-fetch": "^0.17.0",
-    "reflect-metadata": "^0.2.2",
-    "zod": "^4.3.6"
-  }
+	"name": "gql",
+	"version": "0.2.0",
+	"private": true,
+	"type": "module",
+	"imports": {
+		"#*": "./dist/*"
+	},
+	"scripts": {
+		"dev-run": "pnpm run generate-graphql-types && pnpm run build && pnpm run start",
+		"dev": "nodemon --watch ./src --ext ts,graphql,d.ts --exec \"pnpm run dev-run\"",
+		"build": "tsc && copyfiles -u 1 \"src/**/*.graphql\" dist",
+		"start": "node dist/index.js",
+		"generate-graphql-types": "graphql-codegen --config ./src/graphql-codegen.ts",
+		"generate-openai-types:all": "pnpm generate-openai-types:idp && pnpm generate-openai-types:schedule && pnpm generate-openai-types:calendar && pnpm generate-openai-types:sync",
+		"generate-openai-types:idp": "openapi-typescript -o src/types/idp.d.ts https://appiecal-idp.k3s.home.klrnbk.nl/v3/api-docs",
+		"generate-openai-types:schedule": "openapi-typescript -o src/types/schedule.d.ts https://appiecal-schedule.k3s.home.klrnbk.nl/v3/api-docs",
+		"generate-openai-types:calendar": "openapi-typescript -o src/types/calendar.d.ts https://appiecal-calendar.k3s.home.klrnbk.nl/v3/api-docs",
+		"generate-openai-types:sync": "openapi-typescript -o src/types/sync.d.ts https://appiecal-sync.k3s.home.klrnbk.nl/v3/api-docs"
+	},
+	"devDependencies": {
+		"@eslint/eslintrc": "^3.3.5",
+		"@graphql-codegen/graphql-modules-preset": "^5.1.5",
+		"@graphql-codegen/typescript-resolvers": "^5.1.8",
+		"@sapphire/eslint-config": "5.0.6",
+		"@sapphire/ts-config": "5.0.3",
+		"@types/node": "^25.6.0",
+		"copyfiles": "^2.4.1",
+		"eslint": "^10.2.1",
+		"nodemon": "^3.1.14",
+		"openapi-typescript": "^6.7.6",
+		"typescript": "^6.0.3"
+	},
+	"packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8",
+	"dependencies": {
+		"@apollo/server": "^5.5.0",
+		"@graphql-tools/load-files": "^7.0.1",
+		"graphql-modules": "^3.1.1",
+		"openapi-fetch": "^0.17.0",
+		"reflect-metadata": "^0.2.2",
+		"zod": "^4.3.6"
+	}
 }

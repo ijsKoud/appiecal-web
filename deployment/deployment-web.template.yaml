@@ -46,6 +46,11 @@ spec:
                 secretKeyRef:
                   name: appiecal-web-web-secrets
                   key: AUTHENTIK_ISSUER
+            - name: AUTHENTIK_TOKEN_URL
+              valueFrom:
+                secretKeyRef:
+                  name: appiecal-web-web-secrets
+                  key: AUTHENTIK_TOKEN_URL
             - name: AUTHENTIK_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:

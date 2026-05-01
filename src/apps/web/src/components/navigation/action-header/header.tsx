@@ -16,19 +16,12 @@ import {
 	MenubarTrigger
 } from "@/components/ui/menubar";
 import { SyncTab } from "./sync-tab";
+import { EntraTab } from "./entra-tab";
 
 export const ActionHeader = () => {
 	return (
 		<Menubar className="w-fit">
-			<MenubarMenu>
-				<MenubarTrigger>@AH Account</MenubarTrigger>
-				<MenubarContent>
-					<MenubarGroup>
-						<MenubarItem>Link account</MenubarItem>
-						{/* <MenubarItem variant="destructive">Unlink account</MenubarItem> */}
-					</MenubarGroup>
-				</MenubarContent>
-			</MenubarMenu>
+			<EntraTab />
 
 			<MenubarMenu>
 				<MenubarTrigger>Calendar</MenubarTrigger>

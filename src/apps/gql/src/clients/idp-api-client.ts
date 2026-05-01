@@ -12,7 +12,7 @@ export class IdpApiClient extends BaseClient<paths> {
 	}
 
 	public async getAuthorizationUrl(): Promise<string> {
-		const response = await this.client.GET("/v1/entra/start");
+		const response = await this.client.GET("/v1/entra/start", { parseAs: "text" });
 		if (response.error) this.errorHandling(response.error);
 		if (!response.data) throw new Error("Invalid URL returned from IDP back-end");
 
@@ -20,7 +20,10 @@ export class IdpApiClient extends BaseClient<paths> {
 	}
 
 	public async linkEntraUser(code: string): Promise<boolean> {
-		const response = await this.client.POST("/v1/entra/end", { params: { query: { code: code } }, headers: { ...this.userAuthHeaders } });
+		const response = await this.client.POST("/v1/entra/end", {
+			params: { query: { code: code } },
+			headers: { ...this.userAuthHeaders }
+		});
 		if (response.error) this.errorHandling(response.error);
 
 		return true;
@@ -34,7 +37,7 @@ export class IdpApiClient extends BaseClient<paths> {
 	}
 
 	public async getEntraLinkStatus(): Promise<boolean> {
-		const response = await this.client.GET("/v1/entra/status", { headers: { ...this.userAuthHeaders } });
+		const response = await this.client.GET("/v1/entra/status", { parseAs: "text", headers: { ...this.userAuthHeaders } });
 		if (response.error) this.errorHandling(response.error);
 
 		if (response?.data === "linked") return true;
