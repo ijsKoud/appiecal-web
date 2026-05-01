@@ -22,11 +22,23 @@ export type AutomaticSyncStatus = {
   active: Scalars['Boolean']['output'];
 };
 
+export type EntraLinkStatus = {
+  __typename?: 'EntraLinkStatus';
+  active: Scalars['Boolean']['output'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  linkEntraUser: Scalars['Boolean']['output'];
   setAutomaticSync?: Maybe<Scalars['Boolean']['output']>;
   triggerSync: SyncResults;
+  unlinkEntraUser: Scalars['Boolean']['output'];
   version?: Maybe<Scalars['Boolean']['output']>;
+};
+
+
+export type MutationLinkEntraUserArgs = {
+  code: Scalars['String']['input'];
 };
 
 
@@ -42,7 +54,9 @@ export type MutationTriggerSyncArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  getAuthorizationUrl: Scalars['String']['output'];
   getAutomaticSyncStatus: AutomaticSyncStatus;
+  getEntraLinkStatus: EntraLinkStatus;
   version?: Maybe<Scalars['String']['output']>;
 };
 
@@ -128,6 +142,7 @@ export type DirectiveResolverFn<TResult = Record<PropertyKey, never>, TParent = 
 export type ResolversTypes = {
   AutomaticSyncStatus: ResolverTypeWrapper<AutomaticSyncStatus>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  EntraLinkStatus: ResolverTypeWrapper<EntraLinkStatus>;
   Mutation: ResolverTypeWrapper<Record<PropertyKey, never>>;
   Query: ResolverTypeWrapper<Record<PropertyKey, never>>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
@@ -138,6 +153,7 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   AutomaticSyncStatus: AutomaticSyncStatus;
   Boolean: Scalars['Boolean']['output'];
+  EntraLinkStatus: EntraLinkStatus;
   Mutation: Record<PropertyKey, never>;
   Query: Record<PropertyKey, never>;
   String: Scalars['String']['output'];
@@ -148,14 +164,22 @@ export type AutomaticSyncStatusResolvers<ContextType = any, ParentType extends R
   active?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 
+export type EntraLinkStatusResolvers<ContextType = any, ParentType extends ResolversParentTypes['EntraLinkStatus'] = ResolversParentTypes['EntraLinkStatus']> = {
+  active?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+};
+
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  linkEntraUser?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationLinkEntraUserArgs, 'code'>>;
   setAutomaticSync?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, RequireFields<MutationSetAutomaticSyncArgs, 'state'>>;
   triggerSync?: Resolver<ResolversTypes['SyncResults'], ParentType, ContextType, RequireFields<MutationTriggerSyncArgs, 'endDate' | 'startDate'>>;
+  unlinkEntraUser?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   version?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  getAuthorizationUrl?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   getAutomaticSyncStatus?: Resolver<ResolversTypes['AutomaticSyncStatus'], ParentType, ContextType>;
+  getEntraLinkStatus?: Resolver<ResolversTypes['EntraLinkStatus'], ParentType, ContextType>;
   version?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
 };
 
@@ -167,6 +191,7 @@ export type SyncResultsResolvers<ContextType = any, ParentType extends Resolvers
 
 export type Resolvers<ContextType = any> = {
   AutomaticSyncStatus?: AutomaticSyncStatusResolvers<ContextType>;
+  EntraLinkStatus?: EntraLinkStatusResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   SyncResults?: SyncResultsResolvers<ContextType>;

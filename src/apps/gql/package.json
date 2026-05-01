@@ -7,7 +7,8 @@
 		"#*": "./dist/*"
 	},
 	"scripts": {
-		"dev": "pnpm run generate-graphql-types && pnpm run build && pnpm run start",
+		"dev-run": "pnpm run generate-graphql-types && pnpm run build && pnpm run start",
+		"dev": "nodemon --watch ./src --ext ts,graphql,d.ts --exec \"pnpm run dev-run\"",
 		"build": "tsc && copyfiles -u 1 \"src/**/*.graphql\" dist",
 		"start": "node dist/index.js",
 		"generate-graphql-types": "graphql-codegen --config ./src/graphql-codegen.ts",
@@ -26,6 +27,7 @@
 		"@types/node": "^25.6.0",
 		"copyfiles": "^2.4.1",
 		"eslint": "^10.2.1",
+		"nodemon": "^3.1.14",
 		"openapi-typescript": "^6.7.6",
 		"typescript": "^6.0.3"
 	},
