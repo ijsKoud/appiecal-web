@@ -1,0 +1,7 @@
+mutation linkEntraUser($code: String!) {
+	linkEntraUser(code: $code)
+}
+
+mutation unlinkEntraUser {
+	unlinkEntraUser
+}

@@ -1,0 +1,9 @@
+query getAuthorizationUrl {
+	getAuthorizationUrl
+}
+
+query getEntraLinkStatus {
+	getEntraLinkStatus {
+		active
+	}
+}
