@@ -1,0 +1,11 @@
+mutation manualSync($startDate: String!, $endDate: String!) {
+	triggerSync(startDate: $startDate, endDate: $endDate) {
+		newShifts
+		updatedShifts
+		deletedShifts
+	}
+}
+
+mutation setAutomaticSync($state: Boolean!) {
+	setAutomaticSync(state: $state)
+}
