@@ -9,7 +9,7 @@ import {
 	AlertDialogFooter,
 	AlertDialogCancel,
 	AlertDialogAction
-} from "./ui/alert-dialog";
+} from "../ui/alert-dialog";
 
 type Props = {
 	open: boolean;

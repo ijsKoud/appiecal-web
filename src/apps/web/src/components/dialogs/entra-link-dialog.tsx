@@ -1,16 +1,16 @@
 import { FC } from "react";
-import { DialogContent, Dialog, DialogHeader, DialogDescription, DialogTitle, DialogFooter, DialogClose } from "./ui/dialog";
-import { Button } from "./ui/button";
-import { Field, FieldDescription, FieldError, FieldGroup } from "./ui/field";
+import { DialogContent, Dialog, DialogHeader, DialogDescription, DialogTitle, DialogFooter, DialogClose } from "../ui/dialog";
+import { Button } from "../ui/button";
+import { Field, FieldDescription, FieldError, FieldGroup } from "../ui/field";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Label } from "./ui/label";
+import { Label } from "../ui/label";
 import { z } from "zod";
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { LinkEntraUserMutation } from "./gql/_generated";
+import { LinkEntraUserMutation } from "../gql/_generated";
 import { ApolloClient } from "@apollo/client";
-import { Spinner } from "./ui/spinner";
+import { Spinner } from "../ui/spinner";
 
 type Props = {
 	open: boolean;
