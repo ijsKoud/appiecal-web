@@ -1,0 +1,8 @@
+type CaldavLinkStatus {
+	active: Boolean!
+}
+
+type CaldavCalendarListEntry {
+	name: String!
+	href: String!
+}
