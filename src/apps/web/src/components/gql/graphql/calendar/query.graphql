@@ -1,0 +1,12 @@
+query getCalendarList {
+	getCalendarList {
+		href
+		name
+	}
+}
+
+query getCaldavLinkStatus {
+	getCaldavLinkStatus {
+		active
+	}
+}

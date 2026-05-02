@@ -42,6 +42,7 @@ export class CalendarApiClient extends BaseClient<paths> {
 
 	public async getCalendarList(): Promise<paths["/v1/calendar/list"]["get"]["responses"]["200"]["content"]["application/json"]> {
 		const response = await this.client.GET("/v1/calendar/list", { headers: { ...this.userAuthHeaders } });
+		if (response.error && response.error.status === 403) return []; // Ignore FORBIDDEN status as this is a 'missing credentials' error
 		if (response.error) this.errorHandling(response.error);
 
 		return response.data ?? [];
