@@ -5,8 +5,8 @@ query getCalendarList {
 	}
 }
 
-query getCaldavStatus {
-	getEntraLinkStatus {
+query getCaldavLinkStatus {
+	getCaldavLinkStatus {
 		active
 	}
 }
