@@ -1,0 +1,5 @@
+extend type Mutation {
+	linkCaldav(baseUrl: String!, authScope: String!, authToken: String!): Boolean!
+	unlinkCaldav: Boolean!
+	setCalendar(href: String!): Boolean!
+}
