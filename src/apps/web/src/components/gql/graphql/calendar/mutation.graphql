@@ -1,0 +1,11 @@
+mutation setCalendar($href: String!) {
+	setCalendar(href: $href)
+}
+
+mutation linkCaldav($baseUrl: String!, $authScope: String!, $authToken: String!) {
+	linkCaldav(baseUrl: $baseUrl, authScope: $authScope, authToken: $authToken)
+}
+
+mutation unlinkCaldav {
+	unlinkCaldav
+}
