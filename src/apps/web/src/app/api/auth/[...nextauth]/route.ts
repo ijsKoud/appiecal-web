@@ -77,7 +77,7 @@ const handler = NextAuth({
 			issuer: process.env.AUTHENTIK_ISSUER!,
 			authorization: {
 				params: {
-					scope: "openid scope profile email https://klrnbk.nl/projects/appiecal:use"
+					scope: "openid scope profile email offline_access https://klrnbk.nl/projects/appiecal:use"
 				}
 			}
 		})
