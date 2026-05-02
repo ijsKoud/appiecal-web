@@ -1,0 +1,3 @@
+type EntraLinkStatus {
+	active: Boolean!
+}

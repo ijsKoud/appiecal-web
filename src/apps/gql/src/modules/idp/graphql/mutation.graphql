@@ -1,0 +1,4 @@
+extend type Mutation {
+	linkEntraUser(code: String!): Boolean!
+	unlinkEntraUser: Boolean!
+}
