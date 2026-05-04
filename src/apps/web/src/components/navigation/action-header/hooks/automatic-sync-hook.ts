@@ -1,15 +1,14 @@
-import { GetAutomaticSyncStatusDocument } from "@/components/gql/_generated";
-import { useQuery } from "@apollo/client/react";
-import { useEffect, useState } from "react";
+import { GetAutomaticSyncStatusDocument, ManualSyncDocument, SetAutomaticSyncDocument } from "@/components/gql/_generated";
+import { useMutation, useQuery } from "@apollo/client/react";
+import { useEffect, useMemo } from "react";
 import { toast } from "sonner";
 
 export const useAutomaticSyncStatus = () => {
-	const { data, loading, error } = useQuery(GetAutomaticSyncStatusDocument);
+	const { data, loading, error, refetch } = useQuery(GetAutomaticSyncStatusDocument);
+	const [setAutomaticSyncFn] = useMutation(SetAutomaticSyncDocument, { errorPolicy: "all" });
+	const [triggerManualSync] = useMutation(ManualSyncDocument, { errorPolicy: "all" });
 
-	const [isActive, setIsActive] = useState(false);
-	useEffect(() => {
-		if (data && data.getAutomaticSyncStatus) setIsActive(data?.getAutomaticSyncStatus?.active ?? false);
-	}, [data]);
+	const isActive = useMemo(() => data?.getAutomaticSyncStatus.active ?? false, [data]);
 
 	useEffect(() => {
 		if (error)
@@ -18,8 +17,21 @@ export const useAutomaticSyncStatus = () => {
 			});
 	}, [error]);
 
+	const setAutomaticSync = async (state: boolean) => {
+		const result = await setAutomaticSyncFn({ variables: { state } });
+		if (result.error?.message) {
+			toast("Could not set automatic sync", { description: result.error?.message });
+			return;
+		}
+
+		refetch();
+		toast(`Automatic sync ${state ? "enabled" : "disabled"}`);
+	};
+
 	return {
 		isActive,
-		loading
+		loading,
+		setAutomaticSync,
+		triggerManualSync
 	};
 };
