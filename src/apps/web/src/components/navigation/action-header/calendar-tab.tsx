@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/menubar";
 import { FC, useState } from "react";
 import { useCaldav } from "./hooks/caldav-hook";
-import { AlertDialog } from "@/components/alert-dialog";
+import { AlertDialog } from "@/components/dialogs/alert-dialog";
 import { CaldavSetupDialog } from "@/components/dialogs/caldav-setup-dialog";
 
 export const CalendarTab: FC = () => {

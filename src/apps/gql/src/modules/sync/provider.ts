@@ -2,6 +2,7 @@ import { Injectable, Scope } from "graphql-modules";
 import { SyncApiClient } from "#clients/sync-api-client.js";
 import type { AutomaticSyncStatus, SyncResults } from "#generated-types/graphql.js";
 import { triggerSyncToSyncResults } from "./transformer/trigger-sync-to-sync-results.js";
+import { DateTimeToZonedDateString } from "./transformer/date-time-to-zoned-date-string.js";
 
 @Injectable({
 	scope: Scope.Operation
@@ -19,7 +20,11 @@ export class SyncProvider {
 	}
 
 	public async triggerSync(startDate: string, endDate: string): Promise<SyncResults> {
-		const results = await this.syncApiClient.triggerManualSync(startDate, endDate);
+		const start = DateTimeToZonedDateString(new Date(startDate));
+		const end = DateTimeToZonedDateString(new Date(endDate));
+
+		console.log(start, end);
+		const results = await this.syncApiClient.triggerManualSync(start, end);
 		return triggerSyncToSyncResults(results);
 	}
 }

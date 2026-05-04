@@ -146,10 +146,30 @@ export type GetEntraLinkStatusQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetEntraLinkStatusQuery = { __typename?: 'Query', getEntraLinkStatus: { __typename?: 'EntraLinkStatus', active: boolean } };
 
+export type ManualSyncMutationVariables = Exact<{
+  startDate: Scalars['String']['input'];
+  endDate: Scalars['String']['input'];
+}>;
+
+
+export type ManualSyncMutation = { __typename?: 'Mutation', triggerSync: { __typename?: 'SyncResults', newShifts: Array<string>, updatedShifts: Array<string>, deletedShifts: Array<string> } };
+
+export type SetAutomaticSyncMutationVariables = Exact<{
+  state: Scalars['Boolean']['input'];
+}>;
+
+
+export type SetAutomaticSyncMutation = { __typename?: 'Mutation', setAutomaticSync?: boolean | null };
+
 export type GetAutomaticSyncStatusQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetAutomaticSyncStatusQuery = { __typename?: 'Query', getAutomaticSyncStatus: { __typename?: 'AutomaticSyncStatus', active: boolean } };
+
+export type IsAllowedToSyncQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type IsAllowedToSyncQuery = { __typename?: 'Query', getEntraLinkStatus: { __typename?: 'EntraLinkStatus', active: boolean }, getCaldavLinkStatus: { __typename?: 'CaldavLinkStatus', active: boolean } };
 
 
 export const SetCalendarDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"setCalendar"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"href"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"setCalendar"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"href"},"value":{"kind":"Variable","name":{"kind":"Name","value":"href"}}}]}]}}]} as unknown as DocumentNode<SetCalendarMutation, SetCalendarMutationVariables>;
@@ -161,4 +181,7 @@ export const LinkEntraUserDocument = {"kind":"Document","definitions":[{"kind":"
 export const UnlinkEntraUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"unlinkEntraUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unlinkEntraUser"}}]}}]} as unknown as DocumentNode<UnlinkEntraUserMutation, UnlinkEntraUserMutationVariables>;
 export const GetAuthorizationUrlDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAuthorizationUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAuthorizationUrl"}}]}}]} as unknown as DocumentNode<GetAuthorizationUrlQuery, GetAuthorizationUrlQueryVariables>;
 export const GetEntraLinkStatusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getEntraLinkStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getEntraLinkStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active"}}]}}]}}]} as unknown as DocumentNode<GetEntraLinkStatusQuery, GetEntraLinkStatusQueryVariables>;
+export const ManualSyncDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"manualSync"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"startDate"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"endDate"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"triggerSync"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"startDate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"startDate"}}},{"kind":"Argument","name":{"kind":"Name","value":"endDate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"endDate"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newShifts"}},{"kind":"Field","name":{"kind":"Name","value":"updatedShifts"}},{"kind":"Field","name":{"kind":"Name","value":"deletedShifts"}}]}}]}}]} as unknown as DocumentNode<ManualSyncMutation, ManualSyncMutationVariables>;
+export const SetAutomaticSyncDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"setAutomaticSync"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"state"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"setAutomaticSync"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"state"},"value":{"kind":"Variable","name":{"kind":"Name","value":"state"}}}]}]}}]} as unknown as DocumentNode<SetAutomaticSyncMutation, SetAutomaticSyncMutationVariables>;
 export const GetAutomaticSyncStatusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAutomaticSyncStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAutomaticSyncStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active"}}]}}]}}]} as unknown as DocumentNode<GetAutomaticSyncStatusQuery, GetAutomaticSyncStatusQueryVariables>;
+export const IsAllowedToSyncDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"isAllowedToSync"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getEntraLinkStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active"}}]}},{"kind":"Field","name":{"kind":"Name","value":"getCaldavLinkStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active"}}]}}]}}]} as unknown as DocumentNode<IsAllowedToSyncQuery, IsAllowedToSyncQueryVariables>;

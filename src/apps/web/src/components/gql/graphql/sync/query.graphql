@@ -3,3 +3,13 @@ query getAutomaticSyncStatus {
 		active
 	}
 }
+
+query isAllowedToSync {
+	getEntraLinkStatus {
+		active
+	}
+
+	getCaldavLinkStatus {
+		active
+	}
+}
