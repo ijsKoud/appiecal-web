@@ -1,7 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import { useIsAllowedToSync } from "./navigation/action-header/hooks/is-allowed-to-sync-hook";
+import { useIsAllowedToSync } from "../lib/hooks/is-allowed-to-sync-hook";
 
 export const Status: FC = () => {
 	const isAllowedToSync = useIsAllowedToSync();

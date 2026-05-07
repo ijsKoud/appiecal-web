@@ -2,7 +2,7 @@
 
 import { MenubarContent, MenubarGroup, MenubarItem, MenubarMenu, MenubarTrigger } from "@/components/ui/menubar";
 import { FC, useState } from "react";
-import { useEntraLink } from "./hooks/entra-link-hook";
+import { useEntraLink } from "../../../lib/hooks/entra-link-hook";
 import { EntraLinkDialog } from "@/components/dialogs/entra-link-dialog";
 import { AlertDialog } from "@/components/dialogs/alert-dialog";
 

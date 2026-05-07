@@ -14,7 +14,7 @@ import {
 	MenubarTrigger
 } from "@/components/ui/menubar";
 import { FC, useState } from "react";
-import { useCaldav } from "./hooks/caldav-hook";
+import { useCaldav } from "../../../lib/hooks/caldav-hook";
 import { AlertDialog } from "@/components/dialogs/alert-dialog";
 import { CaldavSetupDialog } from "@/components/dialogs/caldav-setup-dialog";
 
