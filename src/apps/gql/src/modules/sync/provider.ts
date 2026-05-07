@@ -23,7 +23,6 @@ export class SyncProvider {
 		const start = DateTimeToZonedDateString(new Date(startDate));
 		const end = DateTimeToZonedDateString(new Date(endDate));
 
-		console.log(start, end);
 		const results = await this.syncApiClient.triggerManualSync(start, end);
 		return triggerSyncToSyncResults(results);
 	}
