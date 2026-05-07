@@ -13,8 +13,8 @@ export default function Login() {
 	return (
 		<MainContent className="h-screen">
 			<div className="text-center">
-				<h1 className="text-4xl font-bold mb-4">Redirecting to login...</h1>
-				<p className="text-lg text-gray-600">If you are not redirected, click the button below.</p>
+				<h1 className="text-4xl font-bold mb-4">Login</h1>
+				<p className="text-lg text-gray-600">Click the button below to login.</p>
 				<Button
 					onClick={() => signIn("authentik", { callbackUrl: "/" })}
 					className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
