@@ -5,6 +5,13 @@
 
 
 export interface paths {
+  "/v1/sync/automatic/trigger": {
+    /**
+     * Trigger a new automatic sync [SERVICE ACCOUNT ONLY]
+     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
+     */
+    post: operations["triggerAutomaticSync"];
+  };
   "/v1/sync/automatic/set": {
     /**
      * Turn the automatic sync on or off
@@ -69,6 +76,56 @@ export type external = Record<string, never>;
 
 export interface operations {
 
+  /**
+   * Trigger a new automatic sync [SERVICE ACCOUNT ONLY]
+   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
+   */
+  triggerAutomaticSync: {
+    responses: {
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+      /** @description Not Acceptable */
+      406: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+      /** @description Too Many Requests */
+      429: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+      /** @description Bad Gateway */
+      502: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+      /** @description Service Unavailable */
+      503: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+    };
+  };
   /**
    * Turn the automatic sync on or off
    * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>

@@ -4,7 +4,7 @@ import * as gm from "graphql-modules";
 export namespace CalendarModule {
   interface DefinedFields {
     Mutation: 'linkCaldav' | 'unlinkCaldav' | 'setCalendar';
-    Query: 'getCalendarList' | 'getCaldavLinkStatus';
+    Query: 'getCalendarList' | 'getCaldavLinkStatus' | 'getActiveCalendar';
     CaldavLinkStatus: 'active';
     CaldavCalendarListEntry: 'name' | 'href';
   };
@@ -40,6 +40,7 @@ export namespace CalendarModule {
       '*'?: gm.Middleware[];
       getCalendarList?: gm.Middleware[];
       getCaldavLinkStatus?: gm.Middleware[];
+      getActiveCalendar?: gm.Middleware[];
     };
     CaldavLinkStatus?: {
       '*'?: gm.Middleware[];

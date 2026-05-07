@@ -1,5 +1,5 @@
 import { Injectable, Scope } from "graphql-modules";
-import { CaldavCalendarListEntry, CaldavLinkStatus } from "#generated-types/graphql.js";
+import { CaldavCalendarListEntry, CaldavLinkStatus, Maybe } from "#generated-types/graphql.js";
 import { CalendarApiClient } from "#clients/calendar-api-client.js";
 
 @Injectable({
@@ -30,6 +30,11 @@ export class CalendarProvider {
 
 	public async setCalendar(href: string): Promise<boolean> {
 		const result = await this.calendarApiClient.setCalendar(href);
+		return result;
+	}
+
+	public async getCalendar(): Promise<Maybe<string>> {
+		const result = await this.calendarApiClient.getActiveCalendar();
 		return result;
 	}
 }

@@ -37,6 +37,13 @@ export interface paths {
      */
     get: operations["getListOfCalendars"];
   };
+  "/v1/calendar/active": {
+    /**
+     * Returns the active calendar
+     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
+     */
+    get: operations["getCalendar"];
+  };
   "/v1/events/{userId}/delete": {
     /**
      * Deletes an event from the calendar (SERVICE ACCOUNT ONLY)
@@ -346,6 +353,62 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["CalendarListEntryResponse"][];
+        };
+      };
+      /** @description Unauthorized */
+      401: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+      /** @description Method Not Allowed */
+      405: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+      /** @description Not Acceptable */
+      406: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+      /** @description Too Many Requests */
+      429: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+      /** @description Bad Gateway */
+      502: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+      /** @description Service Unavailable */
+      503: {
+        content: {
+          "application/problem+json": components["schemas"]["ErrorResponse"];
+        };
+      };
+    };
+  };
+  /**
+   * Returns the active calendar
+   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
+   */
+  getCalendar: {
+    responses: {
+      /** @description Active calendar */
+      200: {
+        content: {
+          "text/plain": string;
         };
       };
       /** @description Unauthorized */

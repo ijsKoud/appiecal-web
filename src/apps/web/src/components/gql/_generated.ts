@@ -78,6 +78,7 @@ export type MutationTriggerSyncArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  getActiveCalendar?: Maybe<Scalars['String']['output']>;
   getAuthorizationUrl: Scalars['String']['output'];
   getAutomaticSyncStatus: AutomaticSyncStatus;
   getCaldavLinkStatus: CaldavLinkStatus;
@@ -123,6 +124,11 @@ export type GetCaldavLinkStatusQueryVariables = Exact<{ [key: string]: never; }>
 
 
 export type GetCaldavLinkStatusQuery = { __typename?: 'Query', getCaldavLinkStatus: { __typename?: 'CaldavLinkStatus', active: boolean } };
+
+export type GetActiveCalendarQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetActiveCalendarQuery = { __typename?: 'Query', getActiveCalendar?: string | null };
 
 export type LinkEntraUserMutationVariables = Exact<{
   code: Scalars['String']['input'];
@@ -177,6 +183,7 @@ export const LinkCaldavDocument = {"kind":"Document","definitions":[{"kind":"Ope
 export const UnlinkCaldavDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"unlinkCaldav"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unlinkCaldav"}}]}}]} as unknown as DocumentNode<UnlinkCaldavMutation, UnlinkCaldavMutationVariables>;
 export const GetCalendarListDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCalendarList"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCalendarList"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"href"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<GetCalendarListQuery, GetCalendarListQueryVariables>;
 export const GetCaldavLinkStatusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getCaldavLinkStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getCaldavLinkStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active"}}]}}]}}]} as unknown as DocumentNode<GetCaldavLinkStatusQuery, GetCaldavLinkStatusQueryVariables>;
+export const GetActiveCalendarDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getActiveCalendar"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getActiveCalendar"}}]}}]} as unknown as DocumentNode<GetActiveCalendarQuery, GetActiveCalendarQueryVariables>;
 export const LinkEntraUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"linkEntraUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"code"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"linkEntraUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"code"},"value":{"kind":"Variable","name":{"kind":"Name","value":"code"}}}]}]}}]} as unknown as DocumentNode<LinkEntraUserMutation, LinkEntraUserMutationVariables>;
 export const UnlinkEntraUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"unlinkEntraUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unlinkEntraUser"}}]}}]} as unknown as DocumentNode<UnlinkEntraUserMutation, UnlinkEntraUserMutationVariables>;
 export const GetAuthorizationUrlDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAuthorizationUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAuthorizationUrl"}}]}}]} as unknown as DocumentNode<GetAuthorizationUrlQuery, GetAuthorizationUrlQueryVariables>;

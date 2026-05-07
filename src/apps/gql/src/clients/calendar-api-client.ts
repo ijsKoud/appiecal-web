@@ -54,4 +54,11 @@ export class CalendarApiClient extends BaseClient<paths> {
 
 		return true;
 	}
+
+	public async getActiveCalendar(): Promise<string | null> {
+		const response = await this.client.GET("/v1/calendar/active", { parseAs: "text", headers: { ...this.userAuthHeaders } });
+		if (response.error) this.errorHandling(response.error);
+
+		return response.data ?? null;
+	}
 }

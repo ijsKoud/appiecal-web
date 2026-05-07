@@ -19,7 +19,7 @@ import { AlertDialog } from "@/components/dialogs/alert-dialog";
 import { CaldavSetupDialog } from "@/components/dialogs/caldav-setup-dialog";
 
 export const CalendarTab: FC = () => {
-	const { isActive, linkCaldav, unlinkCaldav, calendars, setCalendar } = useCaldav();
+	const { isActive, linkCaldav, unlinkCaldav, calendars, setCalendar, activeCalendar } = useCaldav();
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
@@ -45,7 +45,7 @@ export const CalendarTab: FC = () => {
 								<MenubarSub>
 									<MenubarSubTrigger>Calendar for schedule</MenubarSubTrigger>
 									<MenubarSubContent>
-										<MenubarRadioGroup value="">
+										<MenubarRadioGroup value={activeCalendar.data?.getActiveCalendar ?? ""}>
 											{calendars.map((calendar) => (
 												<MenubarRadioItem onClick={() => setCalendar(calendar.href)} value={calendar.href}>
 													{calendar.name}

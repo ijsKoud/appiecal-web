@@ -1,5 +1,6 @@
 import {
 	CaldavCalendarListEntry,
+	GetActiveCalendarDocument,
 	GetCaldavLinkStatusDocument,
 	GetCalendarListDocument,
 	LinkCaldavDocument,
@@ -13,10 +14,11 @@ import { toast } from "sonner";
 export const useCaldav = () => {
 	const caldavLinkStatus = useQuery(GetCaldavLinkStatusDocument);
 	const calendarList = useQuery(GetCalendarListDocument);
+	const activeCalendar = useQuery(GetActiveCalendarDocument, { errorPolicy: "all" });
 
 	const [linkCaldav, { data: linkCaldavData }] = useMutation(LinkCaldavDocument, { errorPolicy: "all" });
 	const [unlinkCaldavFn, { data: unlinkCaldavData }] = useMutation(UnlinkCaldavDocument, { errorPolicy: "all" });
-	const [setCalendarFn, { data: setCalendarData }] = useMutation(SetCalendarDocument, { errorPolicy: "all" });
+	const [setCalendarFn] = useMutation(SetCalendarDocument, { errorPolicy: "all" });
 
 	const isActive = useMemo(() => caldavLinkStatus.data?.getCaldavLinkStatus.active ?? false, [caldavLinkStatus.data]);
 	const calendars = useMemo(() => (calendarList.data?.getCalendarList ?? []).filter(Boolean) as CaldavCalendarListEntry[], [calendarList]);
@@ -24,6 +26,7 @@ export const useCaldav = () => {
 	useEffect(() => {
 		caldavLinkStatus.refetch();
 		calendarList.refetch();
+		activeCalendar.refetch();
 	}, [linkCaldavData, unlinkCaldavData]);
 
 	useEffect(() => {
@@ -50,6 +53,8 @@ export const useCaldav = () => {
 
 	const setCalendar = async (href: string) => {
 		const result = await setCalendarFn({ variables: { href } });
+		activeCalendar.refetch();
+
 		if (result.error?.message) {
 			toast("Could not set calendar", { description: result.error?.message });
 			return;
@@ -61,6 +66,7 @@ export const useCaldav = () => {
 	return {
 		isActive,
 		calendars,
+		activeCalendar,
 		setCalendar,
 		linkCaldav,
 		unlinkCaldav
