@@ -10,3 +10,7 @@ query getCaldavLinkStatus {
 		active
 	}
 }
+
+query getActiveCalendar {
+	getActiveCalendar
+}
