@@ -84,7 +84,23 @@ export type Query = {
   getCaldavLinkStatus: CaldavLinkStatus;
   getCalendarList: Array<Maybe<CaldavCalendarListEntry>>;
   getEntraLinkStatus: EntraLinkStatus;
+  getSyncedShifts: Array<Shift>;
   version?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type QueryGetSyncedShiftsArgs = {
+  endDate: Scalars['String']['input'];
+  startDate: Scalars['String']['input'];
+};
+
+export type Shift = {
+  __typename?: 'Shift';
+  departments: Array<Scalars['String']['output']>;
+  endDate: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  startDate: Scalars['String']['output'];
+  storeId: Scalars['String']['output'];
 };
 
 export type SyncResults = {
@@ -152,6 +168,14 @@ export type GetEntraLinkStatusQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetEntraLinkStatusQuery = { __typename?: 'Query', getEntraLinkStatus: { __typename?: 'EntraLinkStatus', active: boolean } };
 
+export type GetSyncedShiftsQueryVariables = Exact<{
+  startDate: Scalars['String']['input'];
+  endDate: Scalars['String']['input'];
+}>;
+
+
+export type GetSyncedShiftsQuery = { __typename?: 'Query', getSyncedShifts: Array<{ __typename?: 'Shift', id: string, storeId: string, startDate: string, endDate: string, departments: Array<string> }> };
+
 export type ManualSyncMutationVariables = Exact<{
   startDate: Scalars['String']['input'];
   endDate: Scalars['String']['input'];
@@ -188,6 +212,7 @@ export const LinkEntraUserDocument = {"kind":"Document","definitions":[{"kind":"
 export const UnlinkEntraUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"unlinkEntraUser"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"unlinkEntraUser"}}]}}]} as unknown as DocumentNode<UnlinkEntraUserMutation, UnlinkEntraUserMutationVariables>;
 export const GetAuthorizationUrlDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAuthorizationUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAuthorizationUrl"}}]}}]} as unknown as DocumentNode<GetAuthorizationUrlQuery, GetAuthorizationUrlQueryVariables>;
 export const GetEntraLinkStatusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getEntraLinkStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getEntraLinkStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active"}}]}}]}}]} as unknown as DocumentNode<GetEntraLinkStatusQuery, GetEntraLinkStatusQueryVariables>;
+export const GetSyncedShiftsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getSyncedShifts"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"startDate"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"endDate"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getSyncedShifts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"startDate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"startDate"}}},{"kind":"Argument","name":{"kind":"Name","value":"endDate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"endDate"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"storeId"}},{"kind":"Field","name":{"kind":"Name","value":"startDate"}},{"kind":"Field","name":{"kind":"Name","value":"endDate"}},{"kind":"Field","name":{"kind":"Name","value":"departments"}}]}}]}}]} as unknown as DocumentNode<GetSyncedShiftsQuery, GetSyncedShiftsQueryVariables>;
 export const ManualSyncDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"manualSync"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"startDate"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"endDate"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"triggerSync"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"startDate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"startDate"}}},{"kind":"Argument","name":{"kind":"Name","value":"endDate"},"value":{"kind":"Variable","name":{"kind":"Name","value":"endDate"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newShifts"}},{"kind":"Field","name":{"kind":"Name","value":"updatedShifts"}},{"kind":"Field","name":{"kind":"Name","value":"deletedShifts"}}]}}]}}]} as unknown as DocumentNode<ManualSyncMutation, ManualSyncMutationVariables>;
 export const SetAutomaticSyncDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"setAutomaticSync"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"state"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"setAutomaticSync"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"state"},"value":{"kind":"Variable","name":{"kind":"Name","value":"state"}}}]}]}}]} as unknown as DocumentNode<SetAutomaticSyncMutation, SetAutomaticSyncMutationVariables>;
 export const GetAutomaticSyncStatusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAutomaticSyncStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAutomaticSyncStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"active"}}]}}]}}]} as unknown as DocumentNode<GetAutomaticSyncStatusQuery, GetAutomaticSyncStatusQueryVariables>;
