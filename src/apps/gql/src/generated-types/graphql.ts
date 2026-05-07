@@ -86,7 +86,23 @@ export type Query = {
   getCaldavLinkStatus: CaldavLinkStatus;
   getCalendarList: Array<Maybe<CaldavCalendarListEntry>>;
   getEntraLinkStatus: EntraLinkStatus;
+  getSyncedShifts: Array<Shift>;
   version?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type QueryGetSyncedShiftsArgs = {
+  endDate: Scalars['String']['input'];
+  startDate: Scalars['String']['input'];
+};
+
+export type Shift = {
+  __typename?: 'Shift';
+  departments: Array<Scalars['String']['output']>;
+  endDate: Scalars['String']['output'];
+  id: Scalars['String']['output'];
+  startDate: Scalars['String']['output'];
+  storeId: Scalars['String']['output'];
 };
 
 export type SyncResults = {
@@ -176,6 +192,7 @@ export type ResolversTypes = {
   EntraLinkStatus: ResolverTypeWrapper<EntraLinkStatus>;
   Mutation: ResolverTypeWrapper<Record<PropertyKey, never>>;
   Query: ResolverTypeWrapper<Record<PropertyKey, never>>;
+  Shift: ResolverTypeWrapper<Shift>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   SyncResults: ResolverTypeWrapper<SyncResults>;
 };
@@ -189,6 +206,7 @@ export type ResolversParentTypes = {
   EntraLinkStatus: EntraLinkStatus;
   Mutation: Record<PropertyKey, never>;
   Query: Record<PropertyKey, never>;
+  Shift: Shift;
   String: Scalars['String']['output'];
   SyncResults: SyncResults;
 };
@@ -228,7 +246,16 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   getCaldavLinkStatus?: Resolver<ResolversTypes['CaldavLinkStatus'], ParentType, ContextType>;
   getCalendarList?: Resolver<Array<Maybe<ResolversTypes['CaldavCalendarListEntry']>>, ParentType, ContextType>;
   getEntraLinkStatus?: Resolver<ResolversTypes['EntraLinkStatus'], ParentType, ContextType>;
+  getSyncedShifts?: Resolver<Array<ResolversTypes['Shift']>, ParentType, ContextType, RequireFields<QueryGetSyncedShiftsArgs, 'endDate' | 'startDate'>>;
   version?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+};
+
+export type ShiftResolvers<ContextType = any, ParentType extends ResolversParentTypes['Shift'] = ResolversParentTypes['Shift']> = {
+  departments?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>;
+  endDate?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  startDate?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  storeId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
 };
 
 export type SyncResultsResolvers<ContextType = any, ParentType extends ResolversParentTypes['SyncResults'] = ResolversParentTypes['SyncResults']> = {
@@ -244,6 +271,7 @@ export type Resolvers<ContextType = any> = {
   EntraLinkStatus?: EntraLinkStatusResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Shift?: ShiftResolvers<ContextType>;
   SyncResults?: SyncResultsResolvers<ContextType>;
 };
 
