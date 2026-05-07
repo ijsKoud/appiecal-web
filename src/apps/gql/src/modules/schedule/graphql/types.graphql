@@ -1,0 +1,7 @@
+type Shift {
+	id: String!
+	storeId: String!
+	startDate: String!
+	endDate: String!
+	departments: [String!]!
+}
