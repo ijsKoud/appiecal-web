@@ -10,6 +10,10 @@ const QueryCalendarResolver: CalendarModule.Resolvers = {
 		getCalendarList: (_, {}, { injector }: GraphQLModules.Context) => {
 			const resolver = injector.get(CalendarProvider);
 			return resolver.getCalendarList();
+		},
+		getActiveCalendar: (_, {}, { injector }: GraphQLModules.Context) => {
+			const resolver = injector.get(CalendarProvider);
+			return resolver.getCalendar();
 		}
 	}
 };

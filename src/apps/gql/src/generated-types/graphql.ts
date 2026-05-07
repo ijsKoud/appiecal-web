@@ -80,6 +80,7 @@ export type MutationTriggerSyncArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  getActiveCalendar?: Maybe<Scalars['String']['output']>;
   getAuthorizationUrl: Scalars['String']['output'];
   getAutomaticSyncStatus: AutomaticSyncStatus;
   getCaldavLinkStatus: CaldavLinkStatus;
@@ -221,6 +222,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  getActiveCalendar?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   getAuthorizationUrl?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   getAutomaticSyncStatus?: Resolver<ResolversTypes['AutomaticSyncStatus'], ParentType, ContextType>;
   getCaldavLinkStatus?: Resolver<ResolversTypes['CaldavLinkStatus'], ParentType, ContextType>;
