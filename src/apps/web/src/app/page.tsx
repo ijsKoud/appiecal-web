@@ -1,7 +1,7 @@
+import { LandingTabs } from "@/components/landing/tabs";
 import { MainContent } from "@/components/main-content";
 import { ActionHeader } from "@/components/navigation/action-header/header";
 import { SignOutButton } from "@/components/navigation/sign-out-button";
-import { Status } from "@/components/status";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 
@@ -22,14 +22,7 @@ export default async function Home() {
 					<SignOutButton />
 				</div>
 
-				<div className="flex flex-col gap-16">
-					<Status />
-
-					<div>
-						<h2 className="text-xl font-bold">Synced shifts</h2>
-						<p>Missing @AH account and calendar link</p>
-					</div>
-				</div>
+				<LandingTabs />
 			</div>
 		</MainContent>
 	);
