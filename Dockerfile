@@ -1,6 +1,11 @@
 FROM node:24-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
+
+ENV HOME=/tmp
+ENV XDG_CACHE_HOME=/tmp/.cache
+RUN mkdir -p /tmp/.cache
+
 RUN corepack enable
 RUN corepack use pnpm@latest-10
 
@@ -42,10 +47,13 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV="production"
+ENV HOME=/tmp
+ENV XDG_CACHE_HOME=/tmp/.cache
 
 # Set the user
 RUN addgroup --system --gid 1001 app
 RUN adduser --system --uid 1001 app
+RUN chown -R 1001:1001 /tmp
 USER app
 
 ARG APP
