@@ -1,14 +1,12 @@
-FROM node:24-alpine AS base
+FROM node:24-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
+RUN corepack use pnpm@latest-10
 
 # --- Builder ---
 FROM --platform=$BUILDPLATFORM base AS builder
 WORKDIR /app
-
-RUN apk add --no-cache libc6-compat
-RUN apk update
 
 ARG APP
 
@@ -22,11 +20,9 @@ RUN cd src && turbo prune $APP --docker
 FROM --platform=$BUILDPLATFORM base AS installer
 WORKDIR /app
 
-RUN apk add --no-cache libc6-compat
-RUN apk update
-
 ARG APP
 ENV CI=true
+ENV NX_WORKSPACE_ROOT=/app
 
 # Install dependencies
 COPY .gitignore .gitignore
@@ -46,8 +42,6 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV="production"
-RUN apk add --no-cache libc6-compat
-RUN apk update
 
 # Set the user
 RUN addgroup --system --gid 1001 app
