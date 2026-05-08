@@ -1,0 +1,9 @@
+query getSyncedShifts($startDate: String!, $endDate: String!) {
+	getSyncedShifts(startDate: $startDate, endDate: $endDate) {
+		id
+		storeId
+		startDate
+		endDate
+		departments
+	}
+}

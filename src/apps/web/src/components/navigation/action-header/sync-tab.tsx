@@ -11,8 +11,8 @@ import {
 	MenubarTrigger
 } from "@/components/ui/menubar";
 import { FC, useState } from "react";
-import { useAutomaticSyncStatus } from "./hooks/automatic-sync-hook";
-import { useIsAllowedToSync } from "./hooks/is-allowed-to-sync-hook";
+import { useAutomaticSyncStatus } from "@/lib/hooks/automatic-sync-hook";
+import { useIsAllowedToSync } from "@/lib/hooks/is-allowed-to-sync-hook";
 import { ManualSyncDialog } from "@/components/dialogs/manual-sync-dialog";
 
 export const SyncTab: FC = () => {

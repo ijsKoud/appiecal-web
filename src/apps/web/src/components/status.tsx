@@ -1,11 +1,7 @@
-"use client";
-
 import { FC } from "react";
-import { useIsAllowedToSync } from "./navigation/action-header/hooks/is-allowed-to-sync-hook";
+import { LandingTabProps } from "./landing/tabs";
 
-export const Status: FC = () => {
-	const isAllowedToSync = useIsAllowedToSync();
-
+export const Status: FC<LandingTabProps> = ({ isAllowedToSync }) => {
 	return (
 		<div>
 			<h2 className="text-xl font-bold">Status</h2>
