@@ -3,369 +3,863 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
-  "/v1/sync/automatic/trigger": {
-    /**
-     * Trigger a new automatic sync [SERVICE ACCOUNT ONLY]
-     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
-     */
-    post: operations["triggerAutomaticSync"];
-  };
-  "/v1/sync/automatic/set": {
-    /**
-     * Turn the automatic sync on or off
-     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-     */
-    post: operations["setAutomaticSync"];
-  };
-  "/v1/sync/manual": {
-    /**
-     * Sync the users calendar manually
-     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-     */
-    get: operations["manualSync"];
-  };
-  "/v1/sync/automatic/{userId}": {
-    /**
-     * Sync the users calendar as SERVICE ACCOUNT
-     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
-     */
-    get: operations["automaticSync"];
-  };
-  "/v1/sync/automatic/status": {
-    /**
-     * Turn the automatic sync on or off
-     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-     */
-    get: operations["getAutomaticSyncStatus"];
-  };
+    "/v1/sync/automatic/trigger": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Trigger a new automatic sync [SERVICE ACCOUNT ONLY]
+         * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
+         */
+        post: operations["triggerAutomaticSync"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sync/automatic/set": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Turn the automatic sync on or off
+         * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
+         */
+        post: operations["setAutomaticSync"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sync/manual": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Sync the users calendar manually
+         * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
+         */
+        get: operations["manualSync"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sync/automatic/{userId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Sync the users calendar as SERVICE ACCOUNT
+         * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
+         */
+        get: operations["automaticSync"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/sync/automatic/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Turn the automatic sync on or off
+         * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
+         */
+        get: operations["getAutomaticSyncStatus"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
-
 export type webhooks = Record<string, never>;
-
 export interface components {
-  schemas: {
-    ErrorResponse: {
-      /** Format: int32 */
-      status: number;
-      type: string;
-      message: string;
-      detail: string;
-      instance: string;
+    schemas: {
+        ErrorResponse: {
+            /** Format: int32 */
+            status: number;
+            type: string;
+            message: string;
+            detail: string;
+            instance: string;
+        };
+        SyncStatusResponse: {
+            shifts: components["schemas"]["SyncStatusResponseEntries"];
+        };
+        SyncStatusResponseEntries: {
+            new: string[];
+            update: string[];
+            delete: string[];
+        };
     };
-    SyncStatusResponse: {
-      shifts: components["schemas"]["SyncStatusResponseEntries"];
-    };
-    SyncStatusResponseEntries: {
-      new: string[];
-      update: string[];
-      delete: string[];
-    };
-  };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
-
 export type $defs = Record<string, never>;
-
-export type external = Record<string, never>;
-
 export interface operations {
-
-  /**
-   * Trigger a new automatic sync [SERVICE ACCOUNT ONLY]
-   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
-   */
-  triggerAutomaticSync: {
-    responses: {
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
+    triggerAutomaticSync: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "INTERNAL_SERVER_ERROR",
+                     *       "message": "An unexpected error occurred.",
+                     *       "detail": "An unexpected error occurred.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
     };
-  };
-  /**
-   * Turn the automatic sync on or off
-   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-   */
-  setAutomaticSync: {
-    parameters: {
-      query: {
-        state: boolean;
-      };
+    setAutomaticSync: {
+        parameters: {
+            query: {
+                state: boolean;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Change successful */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "INTERNAL_SERVER_ERROR",
+                     *       "message": "An unexpected error occurred.",
+                     *       "detail": "An unexpected error occurred.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
     };
-    responses: {
-      /** @description Change successful */
-      204: {
-        content: never;
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
+    manualSync: {
+        parameters: {
+            query: {
+                startDate: string;
+                endDate: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Returns the sync results */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["SyncStatusResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "INTERNAL_SERVER_ERROR",
+                     *       "message": "An unexpected error occurred.",
+                     *       "detail": "An unexpected error occurred.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
     };
-  };
-  /**
-   * Sync the users calendar manually
-   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-   */
-  manualSync: {
-    parameters: {
-      query: {
-        startDate: string;
-        endDate: string;
-      };
+    automaticSync: {
+        parameters: {
+            query: {
+                startDate: string;
+                endDate: string;
+            };
+            header?: never;
+            path: {
+                userId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Returns the sync results */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["SyncStatusResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "INTERNAL_SERVER_ERROR",
+                     *       "message": "An unexpected error occurred.",
+                     *       "detail": "An unexpected error occurred.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
     };
-    responses: {
-      /** @description Returns the sync results */
-      200: {
-        content: {
-          "*/*": components["schemas"]["SyncStatusResponse"];
+    getAutomaticSyncStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description The status of automatic sync */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": boolean;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "INTERNAL_SERVER_ERROR",
+                     *       "message": "An unexpected error occurred.",
+                     *       "detail": "An unexpected error occurred.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
     };
-  };
-  /**
-   * Sync the users calendar as SERVICE ACCOUNT
-   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
-   */
-  automaticSync: {
-    parameters: {
-      query: {
-        startDate: string;
-        endDate: string;
-      };
-      path: {
-        userId: string;
-      };
-    };
-    responses: {
-      /** @description Returns the sync results */
-      200: {
-        content: {
-          "*/*": components["schemas"]["SyncStatusResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-    };
-  };
-  /**
-   * Turn the automatic sync on or off
-   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-   */
-  getAutomaticSyncStatus: {
-    responses: {
-      /** @description The status of automatic sync */
-      200: {
-        content: {
-          "*/*": boolean;
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-    };
-  };
 }

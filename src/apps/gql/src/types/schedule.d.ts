@@ -3,488 +3,1089 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
-  "/v1/sync/{userId}": {
-    /**
-     * Syncs the schedule with our own records (SERVICE ACCOUNT ONLY)
-     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
-     */
-    post: operations["syncSchedule"];
-  };
-  "/v1/raw-request/raw-schedule": {
-    /** Fetch the schedule and get raw data from the @AH API */
-    post: operations["getRawSchedule"];
-  };
-  "/v1/raw-request/formatted-schedule": {
-    /** Fetch the schedule and get formatted data (with activities) from the @AH API */
-    post: operations["getFormattedSchedule"];
-  };
-  "/v1/schedule/{userId}": {
-    /**
-     * Returns the synced schedule (SERVICE ACCOUNT ONLY)
-     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
-     */
-    get: operations["getScheduleFromId"];
-  };
-  "/v1/schedule/me": {
-    /**
-     * Returns the synced schedule
-     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-     */
-    get: operations["getSchedule"];
-  };
+    "/v1/sync/{userId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Syncs the schedule with our own records (SERVICE ACCOUNT ONLY)
+         * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
+         */
+        post: operations["syncSchedule"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/raw-request/raw-schedule": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Fetch the schedule and get raw data from the @AH API */
+        post: operations["getRawSchedule"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/raw-request/formatted-schedule": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Fetch the schedule and get formatted data (with activities) from the @AH API */
+        post: operations["getFormattedSchedule"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/schedule/{userId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Returns the synced schedule (SERVICE ACCOUNT ONLY)
+         * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
+         */
+        get: operations["getScheduleFromId"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/schedule/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Returns the synced schedule
+         * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
+         */
+        get: operations["getSchedule"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
-
 export type webhooks = Record<string, never>;
-
 export interface components {
-  schemas: {
-    ErrorResponse: {
-      /** Format: int32 */
-      status: number;
-      type: string;
-      message: string;
-      detail: string;
-      instance: string;
-    };
-    MissingAccessTokenException: {
-      detail: string;
-      cause?: {
-        stackTrace?: {
-            classLoaderName?: string;
-            moduleName?: string;
-            moduleVersion?: string;
-            methodName?: string;
-            fileName?: string;
+    schemas: {
+        ErrorResponse: {
             /** Format: int32 */
-            lineNumber?: number;
-            className?: string;
-            nativeMethod?: boolean;
-          }[];
-        message?: string;
-        localizedMessage?: string;
-      };
-      stackTrace?: {
-          classLoaderName?: string;
-          moduleName?: string;
-          moduleVersion?: string;
-          methodName?: string;
-          fileName?: string;
-          /** Format: int32 */
-          lineNumber?: number;
-          className?: string;
-          nativeMethod?: boolean;
-        }[];
-      /** @enum {string} */
-      status: "100 CONTINUE" | "101 SWITCHING_PROTOCOLS" | "102 PROCESSING" | "103 EARLY_HINTS" | "103 CHECKPOINT" | "200 OK" | "201 CREATED" | "202 ACCEPTED" | "203 NON_AUTHORITATIVE_INFORMATION" | "204 NO_CONTENT" | "205 RESET_CONTENT" | "206 PARTIAL_CONTENT" | "207 MULTI_STATUS" | "208 ALREADY_REPORTED" | "226 IM_USED" | "300 MULTIPLE_CHOICES" | "301 MOVED_PERMANENTLY" | "302 FOUND" | "302 MOVED_TEMPORARILY" | "303 SEE_OTHER" | "304 NOT_MODIFIED" | "305 USE_PROXY" | "307 TEMPORARY_REDIRECT" | "308 PERMANENT_REDIRECT" | "400 BAD_REQUEST" | "401 UNAUTHORIZED" | "402 PAYMENT_REQUIRED" | "403 FORBIDDEN" | "404 NOT_FOUND" | "405 METHOD_NOT_ALLOWED" | "406 NOT_ACCEPTABLE" | "407 PROXY_AUTHENTICATION_REQUIRED" | "408 REQUEST_TIMEOUT" | "409 CONFLICT" | "410 GONE" | "411 LENGTH_REQUIRED" | "412 PRECONDITION_FAILED" | "413 PAYLOAD_TOO_LARGE" | "413 REQUEST_ENTITY_TOO_LARGE" | "414 URI_TOO_LONG" | "414 REQUEST_URI_TOO_LONG" | "415 UNSUPPORTED_MEDIA_TYPE" | "416 REQUESTED_RANGE_NOT_SATISFIABLE" | "417 EXPECTATION_FAILED" | "418 I_AM_A_TEAPOT" | "419 INSUFFICIENT_SPACE_ON_RESOURCE" | "420 METHOD_FAILURE" | "421 DESTINATION_LOCKED" | "422 UNPROCESSABLE_ENTITY" | "423 LOCKED" | "424 FAILED_DEPENDENCY" | "425 TOO_EARLY" | "426 UPGRADE_REQUIRED" | "428 PRECONDITION_REQUIRED" | "429 TOO_MANY_REQUESTS" | "431 REQUEST_HEADER_FIELDS_TOO_LARGE" | "451 UNAVAILABLE_FOR_LEGAL_REASONS" | "500 INTERNAL_SERVER_ERROR" | "501 NOT_IMPLEMENTED" | "502 BAD_GATEWAY" | "503 SERVICE_UNAVAILABLE" | "504 GATEWAY_TIMEOUT" | "505 HTTP_VERSION_NOT_SUPPORTED" | "506 VARIANT_ALSO_NEGOTIATES" | "507 INSUFFICIENT_STORAGE" | "508 LOOP_DETECTED" | "509 BANDWIDTH_LIMIT_EXCEEDED" | "510 NOT_EXTENDED" | "511 NETWORK_AUTHENTICATION_REQUIRED";
-      instance: string;
-      message?: string;
-      suppressed?: {
-          stackTrace?: {
-              classLoaderName?: string;
-              moduleName?: string;
-              moduleVersion?: string;
-              methodName?: string;
-              fileName?: string;
-              /** Format: int32 */
-              lineNumber?: number;
-              className?: string;
-              nativeMethod?: boolean;
+            status: number;
+            type: string;
+            message: string;
+            detail: string;
+            instance: string;
+        };
+        MissingAccessTokenException: {
+            detail: string;
+            cause?: {
+                stackTrace?: {
+                    classLoaderName?: string;
+                    moduleName?: string;
+                    moduleVersion?: string;
+                    methodName?: string;
+                    fileName?: string;
+                    /** Format: int32 */
+                    lineNumber?: number;
+                    className?: string;
+                    nativeMethod?: boolean;
+                }[];
+                message?: string;
+                localizedMessage?: string;
+            };
+            stackTrace?: {
+                classLoaderName?: string;
+                moduleName?: string;
+                moduleVersion?: string;
+                methodName?: string;
+                fileName?: string;
+                /** Format: int32 */
+                lineNumber?: number;
+                className?: string;
+                nativeMethod?: boolean;
             }[];
-          message?: string;
-          localizedMessage?: string;
-        }[];
-      localizedMessage?: string;
+            /** @enum {string} */
+            status: "100 CONTINUE" | "101 SWITCHING_PROTOCOLS" | "102 PROCESSING" | "103 EARLY_HINTS" | "103 CHECKPOINT" | "200 OK" | "201 CREATED" | "202 ACCEPTED" | "203 NON_AUTHORITATIVE_INFORMATION" | "204 NO_CONTENT" | "205 RESET_CONTENT" | "206 PARTIAL_CONTENT" | "207 MULTI_STATUS" | "208 ALREADY_REPORTED" | "226 IM_USED" | "300 MULTIPLE_CHOICES" | "301 MOVED_PERMANENTLY" | "302 FOUND" | "302 MOVED_TEMPORARILY" | "303 SEE_OTHER" | "304 NOT_MODIFIED" | "305 USE_PROXY" | "307 TEMPORARY_REDIRECT" | "308 PERMANENT_REDIRECT" | "400 BAD_REQUEST" | "401 UNAUTHORIZED" | "402 PAYMENT_REQUIRED" | "403 FORBIDDEN" | "404 NOT_FOUND" | "405 METHOD_NOT_ALLOWED" | "406 NOT_ACCEPTABLE" | "407 PROXY_AUTHENTICATION_REQUIRED" | "408 REQUEST_TIMEOUT" | "409 CONFLICT" | "410 GONE" | "411 LENGTH_REQUIRED" | "412 PRECONDITION_FAILED" | "413 PAYLOAD_TOO_LARGE" | "413 REQUEST_ENTITY_TOO_LARGE" | "414 URI_TOO_LONG" | "414 REQUEST_URI_TOO_LONG" | "415 UNSUPPORTED_MEDIA_TYPE" | "416 REQUESTED_RANGE_NOT_SATISFIABLE" | "417 EXPECTATION_FAILED" | "418 I_AM_A_TEAPOT" | "419 INSUFFICIENT_SPACE_ON_RESOURCE" | "420 METHOD_FAILURE" | "421 DESTINATION_LOCKED" | "422 UNPROCESSABLE_ENTITY" | "423 LOCKED" | "424 FAILED_DEPENDENCY" | "425 TOO_EARLY" | "426 UPGRADE_REQUIRED" | "428 PRECONDITION_REQUIRED" | "429 TOO_MANY_REQUESTS" | "431 REQUEST_HEADER_FIELDS_TOO_LARGE" | "451 UNAVAILABLE_FOR_LEGAL_REASONS" | "500 INTERNAL_SERVER_ERROR" | "501 NOT_IMPLEMENTED" | "502 BAD_GATEWAY" | "503 SERVICE_UNAVAILABLE" | "504 GATEWAY_TIMEOUT" | "505 HTTP_VERSION_NOT_SUPPORTED" | "506 VARIANT_ALSO_NEGOTIATES" | "507 INSUFFICIENT_STORAGE" | "508 LOOP_DETECTED" | "509 BANDWIDTH_LIMIT_EXCEEDED" | "510 NOT_EXTENDED" | "511 NETWORK_AUTHENTICATION_REQUIRED";
+            instance: string;
+            message?: string;
+            suppressed?: {
+                stackTrace?: {
+                    classLoaderName?: string;
+                    moduleName?: string;
+                    moduleVersion?: string;
+                    methodName?: string;
+                    fileName?: string;
+                    /** Format: int32 */
+                    lineNumber?: number;
+                    className?: string;
+                    nativeMethod?: boolean;
+                }[];
+                message?: string;
+                localizedMessage?: string;
+            }[];
+            localizedMessage?: string;
+        };
+        SyncStatusResponse: {
+            shifts: components["schemas"]["SyncStatusResponseEntries"];
+        };
+        SyncStatusResponseEntries: {
+            new: string[];
+            update: string[];
+            delete: string[];
+        };
+        GqlScheduleResponseSchedule: {
+            startTime: string;
+            endTime: string;
+            /** Format: int32 */
+            minutes: number;
+            storeId: string;
+            /** Format: int32 */
+            leaveMinutes: number;
+            /** Format: int32 */
+            paidMinutes: number;
+            /** Format: int32 */
+            sickMinutes: number;
+            teamNames: string[];
+        };
+        ScheduleResponse: {
+            shifts: components["schemas"]["ScheduleResponseShiftObject"][];
+            /** Format: int32 */
+            amount: number;
+        };
+        ScheduleResponseShiftObject: {
+            /** Format: uuid */
+            id: string;
+            storeId: string;
+            /** Format: date-time */
+            startDate: string;
+            /** Format: date-time */
+            endDate: string;
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            updatedAt: string;
+            departments: ("Management" | "Operatie" | "OperatieGekoeld" | "OperatieKwaliteit" | "Service" | "ServiceIndirect" | "ServiceZelfScan" | "ServiceBalie" | "Vers" | "VersFoodServices" | "Unknown")[];
+            activities: Record<string, never>[];
+            isFullSickDay: boolean;
+            isFullAbsentDay: boolean;
+        };
     };
-    SyncStatusResponse: {
-      shifts: components["schemas"]["SyncStatusResponseEntries"];
-    };
-    SyncStatusResponseEntries: {
-      new: string[];
-      update: string[];
-      delete: string[];
-    };
-    GqlScheduleResponseSchedule: {
-      startTime: string;
-      endTime: string;
-      /** Format: int32 */
-      minutes: number;
-      storeId: string;
-      /** Format: int32 */
-      leaveMinutes: number;
-      /** Format: int32 */
-      paidMinutes: number;
-      /** Format: int32 */
-      sickMinutes: number;
-      teamNames: string[];
-    };
-    ScheduleResponse: {
-      shifts: components["schemas"]["ScheduleResponseShiftObject"][];
-      /** Format: int32 */
-      amount: number;
-    };
-    ScheduleResponseShiftObject: {
-      /** Format: uuid */
-      id: string;
-      storeId: string;
-      /** Format: date-time */
-      startDate: string;
-      /** Format: date-time */
-      endDate: string;
-      /** Format: date-time */
-      createdAt: string;
-      /** Format: date-time */
-      updatedAt: string;
-      departments: ("Management" | "Operatie" | "OperatieGekoeld" | "OperatieKwaliteit" | "Service" | "ServiceIndirect" | "ServiceZelfScan" | "ServiceBalie" | "Vers" | "VersFoodServices" | "Unknown")[];
-      activities: Record<string, never>[];
-      isFullSickDay: boolean;
-      isFullAbsentDay: boolean;
-    };
-  };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
-
 export type $defs = Record<string, never>;
-
-export type external = Record<string, never>;
-
 export interface operations {
-
-  /**
-   * Syncs the schedule with our own records (SERVICE ACCOUNT ONLY)
-   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
-   */
-  syncSchedule: {
-    parameters: {
-      query: {
-        /** @description The start date */
-        "start-date": string;
-        /** @description The end date */
-        "end-date": string;
-      };
-      path: {
-        /** @description The id of the user registered at IDP */
-        userId: string;
-      };
+    syncSchedule: {
+        parameters: {
+            query: {
+                /** @description The start date */
+                "start-date": string;
+                /** @description The end date */
+                "end-date": string;
+            };
+            header?: never;
+            path: {
+                /** @description The id of the user registered at IDP */
+                userId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Returns the sync results */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["SyncStatusResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Missing or invalid Azure Token */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 409,
+                     *       "type": "CONFLICT",
+                     *       "message": "Unable to sync the schedule due to invalid or missing access token (Azure Entra Link setup correctly?)",
+                     *       "detail": "Expected token to be returned but got empty string instead",
+                     *       "instance": "/v1/sync/{userId}"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["MissingAccessTokenException"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "INTERNAL_SERVER_ERROR",
+                     *       "message": "An unexpected error occurred.",
+                     *       "detail": "An unexpected error occurred.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
     };
-    responses: {
-      /** @description Returns the sync results */
-      200: {
-        content: {
-          "*/*": components["schemas"]["SyncStatusResponse"];
+    getRawSchedule: {
+        parameters: {
+            query: {
+                /** @description Azure Entra access token to access the @AH API's (can be retrieved via the 'AppieCal's idp-service') */
+                "access-token": string;
+                /** @description The start date */
+                "start-date": string;
+                /** @description The end date */
+                "end-date": string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Returns the list of shifts of a user */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": components["schemas"]["GqlScheduleResponseSchedule"][];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "INTERNAL_SERVER_ERROR",
+                     *       "message": "An unexpected error occurred.",
+                     *       "detail": "An unexpected error occurred.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Missing or invalid Azure Token */
-      409: {
-        content: {
-          "application/problem+json": components["schemas"]["MissingAccessTokenException"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
     };
-  };
-  /** Fetch the schedule and get raw data from the @AH API */
-  getRawSchedule: {
-    parameters: {
-      query: {
-        /** @description Azure Entra access token to access the @AH API's (can be retrieved via the 'AppieCal's idp-service') */
-        "access-token": string;
-        /** @description The start date */
-        "start-date": string;
-        /** @description The end date */
-        "end-date": string;
-      };
+    getFormattedSchedule: {
+        parameters: {
+            query: {
+                /** @description Azure Entra access token to access the @AH API's (can be retrieved via the 'AppieCal's idp-service') */
+                "access-token": string;
+                /** @description The start date */
+                "start-date": string;
+                /** @description The end date */
+                "end-date": string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Returns the list of shifts (formatted with activities) of a user */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "amount": 1,
+                     *       "shifts": [
+                     *         {
+                     *           "id": "fcb42be0-7988-4ae8-83af-1d453b0a423e",
+                     *           "storeId": "1148",
+                     *           "startDate": "2025-05-18T20:00:00",
+                     *           "endDate": "2025-05-18T23:00:00",
+                     *           "createdAt": "2025-05-18T20:00:00",
+                     *           "updatedAt": "2025-05-18T20:00:00",
+                     *           "departments": [
+                     *             "Operatie"
+                     *           ],
+                     *           "activities": [
+                     *             {
+                     *               "id": "44a275cb-fb32-41c1-ad22-2c522028e6bc",
+                     *               "description": "Promotie",
+                     *               "startDate": "2025-05-18T20:00:00",
+                     *               "endDate": "2025-05-18T23:00:00",
+                     *               "createdAt": "2025-05-18T20:00:00",
+                     *               "updatedAt": "2025-05-18T20:00:00",
+                     *               "department": "Operatie",
+                     *               "timeCode": "WRK",
+                     *               "paid": true
+                     *             }
+                     *           ]
+                     *         }
+                     *       ]
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ScheduleResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "INTERNAL_SERVER_ERROR",
+                     *       "message": "An unexpected error occurred.",
+                     *       "detail": "An unexpected error occurred.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
     };
-    responses: {
-      /** @description Returns the list of shifts of a user */
-      200: {
-        content: {
-          "*/*": components["schemas"]["GqlScheduleResponseSchedule"][];
+    getScheduleFromId: {
+        parameters: {
+            query: {
+                /** @description The start date */
+                "start-date": string;
+                /** @description The end date */
+                "end-date": string;
+            };
+            header?: never;
+            path: {
+                /** @description The id of the user registered at IDP */
+                userId: string;
+            };
+            cookie?: never;
         };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Returns the list of shifts (formatted with activities) of a user */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "amount": 1,
+                     *       "shifts": [
+                     *         {
+                     *           "id": "fcb42be0-7988-4ae8-83af-1d453b0a423e",
+                     *           "storeId": "1148",
+                     *           "startDate": "2025-05-18T20:00:00",
+                     *           "endDate": "2025-05-18T23:00:00",
+                     *           "createdAt": "2025-05-18T20:00:00",
+                     *           "updatedAt": "2025-05-18T20:00:00",
+                     *           "departments": [
+                     *             "Operatie"
+                     *           ],
+                     *           "activities": [
+                     *             {
+                     *               "id": "44a275cb-fb32-41c1-ad22-2c522028e6bc",
+                     *               "description": "Promotie",
+                     *               "startDate": "2025-05-18T20:00:00",
+                     *               "endDate": "2025-05-18T23:00:00",
+                     *               "createdAt": "2025-05-18T20:00:00",
+                     *               "updatedAt": "2025-05-18T20:00:00",
+                     *               "department": "Operatie",
+                     *               "timeCode": "WRK",
+                     *               "paid": true
+                     *             }
+                     *           ]
+                     *         }
+                     *       ]
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ScheduleResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "INTERNAL_SERVER_ERROR",
+                     *       "message": "An unexpected error occurred.",
+                     *       "detail": "An unexpected error occurred.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
     };
-  };
-  /** Fetch the schedule and get formatted data (with activities) from the @AH API */
-  getFormattedSchedule: {
-    parameters: {
-      query: {
-        /** @description Azure Entra access token to access the @AH API's (can be retrieved via the 'AppieCal's idp-service') */
-        "access-token": string;
-        /** @description The start date */
-        "start-date": string;
-        /** @description The end date */
-        "end-date": string;
-      };
+    getSchedule: {
+        parameters: {
+            query: {
+                /** @description The start date */
+                "start-date": string;
+                /** @description The end date */
+                "end-date": string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Returns the list of shifts (formatted with activities) of a user */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "amount": 1,
+                     *       "shifts": [
+                     *         {
+                     *           "id": "fcb42be0-7988-4ae8-83af-1d453b0a423e",
+                     *           "storeId": "1148",
+                     *           "startDate": "2025-05-18T20:00:00",
+                     *           "endDate": "2025-05-18T23:00:00",
+                     *           "createdAt": "2025-05-18T20:00:00",
+                     *           "updatedAt": "2025-05-18T20:00:00",
+                     *           "departments": [
+                     *             "Operatie"
+                     *           ],
+                     *           "activities": [
+                     *             {
+                     *               "id": "44a275cb-fb32-41c1-ad22-2c522028e6bc",
+                     *               "description": "Promotie",
+                     *               "startDate": "2025-05-18T20:00:00",
+                     *               "endDate": "2025-05-18T23:00:00",
+                     *               "createdAt": "2025-05-18T20:00:00",
+                     *               "updatedAt": "2025-05-18T20:00:00",
+                     *               "department": "Operatie",
+                     *               "timeCode": "WRK",
+                     *               "paid": true
+                     *             }
+                     *           ]
+                     *         }
+                     *       ]
+                     *     }
+                     */
+                    "application/json": components["schemas"]["ScheduleResponse"];
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "INTERNAL_SERVER_ERROR",
+                     *       "message": "An unexpected error occurred.",
+                     *       "detail": "An unexpected error occurred.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
     };
-    responses: {
-      /** @description Returns the list of shifts (formatted with activities) of a user */
-      200: {
-        content: {
-          "application/json": components["schemas"]["ScheduleResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-    };
-  };
-  /**
-   * Returns the synced schedule (SERVICE ACCOUNT ONLY)
-   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use) && isServiceAccount(authentication)</strong>
-   */
-  getScheduleFromId: {
-    parameters: {
-      query: {
-        /** @description The start date */
-        "start-date": string;
-        /** @description The end date */
-        "end-date": string;
-      };
-      path: {
-        /** @description The id of the user registered at IDP */
-        userId: string;
-      };
-    };
-    responses: {
-      /** @description Returns the list of shifts (formatted with activities) of a user */
-      200: {
-        content: {
-          "application/json": components["schemas"]["ScheduleResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-    };
-  };
-  /**
-   * Returns the synced schedule
-   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-   */
-  getSchedule: {
-    parameters: {
-      query: {
-        /** @description The start date */
-        "start-date": string;
-        /** @description The end date */
-        "end-date": string;
-      };
-    };
-    responses: {
-      /** @description Returns the list of shifts (formatted with activities) of a user */
-      200: {
-        content: {
-          "application/json": components["schemas"]["ScheduleResponse"];
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-    };
-  };
 }

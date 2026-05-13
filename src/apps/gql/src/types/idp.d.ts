@@ -3,491 +3,1230 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
-  "/v1/token/force-refresh-token": {
-    /**
-     * Retrieve a fresh access token to interact with the @AH APIs
-     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-     */
-    post: operations["forceRefreshAccessToken"];
-  };
-  "/v1/entra/end": {
-    /**
-     * Link IDP user to Azure Entra account credentials (access_token, refresh_token)
-     * @description Note: Existing links will be overwritten!<br/>Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-     */
-    post: operations["linkUserWithAzureEntra"];
-  };
-  "/v1/token/access-token/{userId}": {
-    /**
-     * Retrieve an access token from a specific user (SERVICE ACCOUNTS ONLY)
-     * @description Required scopes expression: <strong>isServiceAccount(authentication) && hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-     */
-    get: operations["getAccessTokenFromUserId"];
-  };
-  "/v1/token/access-token/me": {
-    /**
-     * Retrieve an access token to interact with the @AH APIs
-     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-     */
-    get: operations["getAccessToken"];
-  };
-  "/v1/entra/status": {
-    /**
-     * The status on the Azure Entra link
-     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-     */
-    get: operations["getLinkStatus"];
-  };
-  "/v1/entra/start": {
-    /** Start the Azure Entra authentication flow (returns login-page url) */
-    get: operations["getAzureEntraUrl"];
-  };
-  "/v1/token/revoke-tokens": {
-    /**
-     * Removes the access token and refresh token from the system and deletes the link with Azure Entra
-     * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-     */
-    delete: operations["revokeTokens"];
-  };
+    "/v1/token/force-refresh-token": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Retrieve a fresh access token to interact with the @AH APIs
+         * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
+         */
+        post: operations["forceRefreshAccessToken"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/entra/end": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Link IDP user to Azure Entra account credentials (access_token, refresh_token)
+         * @description Note: Existing links will be overwritten!<br/>Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
+         */
+        post: operations["linkUserWithAzureEntra"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/token/access-token/{userId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve an access token from a specific user (SERVICE ACCOUNTS ONLY)
+         * @description Required scopes expression: <strong>isServiceAccount(authentication) && hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
+         */
+        get: operations["getAccessTokenFromUserId"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/token/access-token/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Retrieve an access token to interact with the @AH APIs
+         * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
+         */
+        get: operations["getAccessToken"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/entra/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * The status on the Azure Entra link
+         * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
+         */
+        get: operations["getLinkStatus"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/entra/start": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Start the Azure Entra authentication flow (returns login-page url) */
+        get: operations["getAzureEntraUrl"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/token/revoke-tokens": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Removes the access token and refresh token from the system and deletes the link with Azure Entra
+         * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
+         */
+        delete: operations["revokeTokens"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
-
 export type webhooks = Record<string, never>;
-
 export interface components {
-  schemas: {
-    ErrorResponse: {
-      /** Format: int32 */
-      status: number;
-      type: string;
-      message: string;
-      detail: string;
-      instance: string;
+    schemas: {
+        ErrorResponse: {
+            /** Format: int32 */
+            status: number;
+            type: string;
+            message: string;
+            detail: string;
+            instance: string;
+        };
     };
-  };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
-
 export type $defs = Record<string, never>;
-
-export type external = Record<string, never>;
-
 export interface operations {
-
-  /**
-   * Retrieve a fresh access token to interact with the @AH APIs
-   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-   */
-  forceRefreshAccessToken: {
-    responses: {
-      /** @description Fresh access token ready to use */
-      200: {
-        content: {
-          "text/plain": string;
+    forceRefreshAccessToken: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Fresh access token ready to use */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example xxx.yyy.zzz */
+                    "text/plain": string;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unable to refresh access token due to missing Azure Entra credentials (refresh_token) */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "type": "CONFLICT",
+                     *       "status": 409,
+                     *       "message": "Conflict",
+                     *       "detail": "Conflict",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "SERVER_ERROR",
+                     *       "message": "Retry your request after a brief wait and contact us if the issue persists. Check the status page.",
+                     *       "detail": "The server had an error while processing your request",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Unable to refresh access token due to missing Azure Entra credentials (refresh_token) */
-      409: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
     };
-  };
-  /**
-   * Link IDP user to Azure Entra account credentials (access_token, refresh_token)
-   * @description Note: Existing links will be overwritten!<br/>Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-   */
-  linkUserWithAzureEntra: {
-    parameters: {
-      query: {
-        code: string;
-      };
+    linkUserWithAzureEntra: {
+        parameters: {
+            query: {
+                code: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Link between Azure Entra and Idp has been made */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "SERVER_ERROR",
+                     *       "message": "Retry your request after a brief wait and contact us if the issue persists. Check the status page.",
+                     *       "detail": "The server had an error while processing your request",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
     };
-    responses: {
-      /** @description Link between Azure Entra and Idp has been made */
-      204: {
-        content: {
-          "*/*": unknown;
+    getAccessTokenFromUserId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                userId: string;
+            };
+            cookie?: never;
         };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description (Fresh) usable access token ready to use */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example xxx.yyy.zzz */
+                    "text/plain": string;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "SERVER_ERROR",
+                     *       "message": "Retry your request after a brief wait and contact us if the issue persists. Check the status page.",
+                     *       "detail": "The server had an error while processing your request",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
     };
-  };
-  /**
-   * Retrieve an access token from a specific user (SERVICE ACCOUNTS ONLY)
-   * @description Required scopes expression: <strong>isServiceAccount(authentication) && hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-   */
-  getAccessTokenFromUserId: {
-    parameters: {
-      path: {
-        userId: string;
-      };
+    getAccessToken: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description (Fresh) usable access token ready to use */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example xxx.yyy.zzz */
+                    "text/plain": string;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "SERVER_ERROR",
+                     *       "message": "Retry your request after a brief wait and contact us if the issue persists. Check the status page.",
+                     *       "detail": "The server had an error while processing your request",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+        };
     };
-    responses: {
-      /** @description (Fresh) usable access token ready to use */
-      200: {
-        content: {
-          "text/plain": string;
+    getLinkStatus: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description The status of the Azure Entra link */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example linked */
+                    "text/plain": string;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "SERVER_ERROR",
+                     *       "message": "Retry your request after a brief wait and contact us if the issue persists. Check the status page.",
+                     *       "detail": "The server had an error while processing your request",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
     };
-  };
-  /**
-   * Retrieve an access token to interact with the @AH APIs
-   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-   */
-  getAccessToken: {
-    responses: {
-      /** @description (Fresh) usable access token ready to use */
-      200: {
-        content: {
-          "text/plain": string;
+    getAzureEntraUrl: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Get the azure entra authentication url */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /** @example https://example.com/ */
+                    "text/plain": string;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "SERVER_ERROR",
+                     *       "message": "Retry your request after a brief wait and contact us if the issue persists. Check the status page.",
+                     *       "detail": "The server had an error while processing your request",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
     };
-  };
-  /**
-   * The status on the Azure Entra link
-   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-   */
-  getLinkStatus: {
-    responses: {
-      /** @description The status of the Azure Entra link */
-      200: {
-        content: {
-          "text/plain": string;
+    revokeTokens: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Access and refresh token are removed and user is unlinked */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "*/*": unknown;
+                };
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 401,
+                     *       "type": "UNAUTHORIZED",
+                     *       "message": "You have to be logged in to do this.",
+                     *       "detail": "No x-authorization header is present.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Method Not Allowed */
+            405: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 405,
+                     *       "type": "METHOD_NOT_ALLOWED",
+                     *       "message": "Method not allowed.",
+                     *       "detail": "Method not allowed.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Not Acceptable */
+            406: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 406,
+                     *       "type": "NOT_ACCEPTABLE",
+                     *       "message": "Not acceptable",
+                     *       "detail": "Not acceptable",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Unable to remove access and refresh token due to missing Azure Entra credentials */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "type": "CONFLICT",
+                     *       "status": 409,
+                     *       "message": "Conflict",
+                     *       "detail": "Conflict",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Too Many Requests */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 429,
+                     *       "type": "RATE_LIMIT",
+                     *       "message": "Pace your requests. Read the Rate limit guide.",
+                     *       "detail": "Rate limit reached for requests",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Internal Server Error */
+            500: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 500,
+                     *       "type": "SERVER_ERROR",
+                     *       "message": "Retry your request after a brief wait and contact us if the issue persists. Check the status page.",
+                     *       "detail": "The server had an error while processing your request",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Bad Gateway */
+            502: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 502,
+                     *       "type": "BAD_GATEWAY",
+                     *       "message": "Bad gateway.",
+                     *       "detail": "Bad gateway.",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
+            /** @description Service Unavailable */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    /**
+                     * @example {
+                     *       "status": 503,
+                     *       "type": "ENGINE_OVERLOADED",
+                     *       "message": "Our servers are experiencing high traffic. Please retry your requests after a brief wait.",
+                     *       "detail": "The engine is currently overloaded, please try again later",
+                     *       "instance": "/v1/example/endpoint"
+                     *     }
+                     */
+                    "application/problem+json": components["schemas"]["ErrorResponse"];
+                };
+            };
         };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
     };
-  };
-  /** Start the Azure Entra authentication flow (returns login-page url) */
-  getAzureEntraUrl: {
-    responses: {
-      /** @description Get the azure entra authentication url */
-      200: {
-        content: {
-          "text/plain": string;
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-    };
-  };
-  /**
-   * Removes the access token and refresh token from the system and deletes the link with Azure Entra
-   * @description Required scopes expression: <strong>hasScope(https://klrnbk.nl/projects/appiecal:use)</strong>
-   */
-  revokeTokens: {
-    responses: {
-      /** @description Access and refresh token are removed and user is unlinked */
-      204: {
-        content: {
-          "*/*": unknown;
-        };
-      };
-      /** @description Unauthorized */
-      401: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Method Not Allowed */
-      405: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Not Acceptable */
-      406: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Unable to remove access and refresh token due to missing Azure Entra credentials */
-      409: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Too Many Requests */
-      429: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Internal Server Error */
-      500: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Bad Gateway */
-      502: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-      /** @description Service Unavailable */
-      503: {
-        content: {
-          "application/problem+json": components["schemas"]["ErrorResponse"];
-        };
-      };
-    };
-  };
 }
