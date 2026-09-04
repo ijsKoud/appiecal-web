@@ -19,14 +19,14 @@
     "generate-openapi-types:sync": "openapi-typescript -o src/types/sync.d.ts https://appiecal-sync.k3s.home.klrnbk.nl/v3/api-docs"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.5",
-    "@graphql-codegen/graphql-modules-preset": "^6.0.1",
-    "@graphql-codegen/typescript-resolvers": "^6.0.2",
+    "@eslint/eslintrc": "^3.3.7",
+    "@graphql-codegen/graphql-modules-preset": "^6.1.0",
+    "@graphql-codegen/typescript-resolvers": "^6.1.0",
     "@sapphire/eslint-config": "5.0.6",
     "@sapphire/ts-config": "5.0.3",
-    "@types/node": "^25.9.2",
+    "@types/node": "^25.9.5",
     "copyfiles": "^2.4.1",
-    "eslint": "^10.4.1",
+    "eslint": "^10.10.0",
     "nodemon": "^3.1.14",
     "openapi-typescript": "^7.13.0",
     "typescript": "^6.0.3"
