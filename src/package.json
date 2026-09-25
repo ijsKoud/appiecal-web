@@ -9,7 +9,7 @@
 	},
 	"keywords": [],
 	"dependencies": {
-		"dotenv": "^17.4.2"
+		"dotenv": "^18.0.4"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3.3.5",
